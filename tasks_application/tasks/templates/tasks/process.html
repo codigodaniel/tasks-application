@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+{%block content%}
+<h3>Esta Tarea ¿Requiere acción?</h3>
+<b>Sí:</b> Entonces debes clasificarla, y elegir tamaño. <br>
+<b>No:</b> Entonces debes archivarla.
+
+                    <table border="1">
+                        <tr><td> 
+                        {% if inbox_first %}
+                            <form method="post" action="/process/update/{{inbox_first.id}}/">
+                            <table>
+                               {{form}}
+                                <tr>
+                                    <td> </td>
+                                    <td><input type="submit"> </td>
+                                </tr>
+                            </table>
+                            </form>
+                        {% else %}
+                            <p>No hay Tareas en el Inbox.</p>
+                        {% endif %}
+                        </td></tr>
+                    </table>                
+
+{%endblock%}

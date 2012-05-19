@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{%block content%}
+<script>
+    window.onload=function(){document.getElementById('id_title').focus();}
+</script>
+                    <table border="1">
+                        <tr><td>
+                            <h3>Ingresa una Tarea al Inbox:</h3>
+                        <form method="post" action="/inbox/insert/">
+                        <table>
+                        {{form}}
+                            <tr>
+                                <td> </td>
+                                <td><input type="submit"> </td>
+                            </tr>
+                        </table>
+                        </form>
+                        </td></tr>
+                        <tr><td> 
+                        {% if pending_list %}
+                            <ul>
+                            {% for object in pending_list %}
+                                <li><a href="/tasks/{{ object.id }}/">{{ object.title }}</a></li>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No tasks are available.</p>
+                        {% endif %}
+                        </td></tr>
+                    </table>     
+{%endblock%}
