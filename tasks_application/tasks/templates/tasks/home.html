@@ -3,9 +3,10 @@
 <script>
     window.onload=function(){document.getElementById('id_title').focus();}
 </script>
-                    <table border="1">
+                    <table >
                         <tr><td>
-                            <h3>Ingresa una Tarea al Inbox:</h3>
+                            
+                        <h3>Ingresa una Tarea al Inbox:</h3>
                         <form method="post" action="/inbox/insert/">
                         <table>
                         {{form}}
@@ -15,17 +16,26 @@
                             </tr>
                         </table>
                         </form>
+                        
                         </td></tr>
                         <tr><td> 
-                        {% if pending_list %}
-                            <ul>
-                            {% for object in pending_list %}
-                                <li><a href="/tasks/{{ object.id }}/">{{ object.title }}</a></li>
-                            {% endfor %}
-                            </ul>
-                        {% else %}
-                            <p>No tasks are available.</p>
-                        {% endif %}
+                        {%if current_project%}
+                        Proyecto activo: <b>{{current_project}}</b> <a href="/tasks/project/open/0">desactivar</a>
+                        {%endif%}
+                        <h3>Tareas listas para ejecutar:</h3>
                         </td></tr>
+                        {%for list in pending_list%}
+                            <tr><td> 
+                                <h2>{{list.label}}</h2>
+                                {% if list.list %}
+                                    {% for object in list.list %}
+                                        {%include 'tasks/task_float.html'%}
+                                    {% endfor %}
+                                {% else %}
+                                    <p>No tasks are available.</p>
+                                {% endif %}
+                            </td></tr>
+                        {%endfor%}
+                        
                     </table>     
 {%endblock%}

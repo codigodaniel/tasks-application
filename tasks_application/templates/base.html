@@ -1,22 +1,43 @@
 <html>
     <head>
         <style>
-            table{
-                width:100%;
-            }
+            *{font-family:Arial;color:#30314C;}
+            body{background:#F0F0F0;}
+            table{width:98%;margin:10px;border:1px solid #999;}
+            td{padding:10px;}
+            a{color:#28B937;}
+            input[type=text]{font-size:20px;padding:3px;}
+            div.task{float:left;border:1px solid #999;padding:5px;margin:5px;}
+            div.task a{display:inline-block;border:1px solid #999;height:30px;width:30px;margin:1px;}
+            div.task a.done{background:#9AB0B2;}
+            div.task a.erase{background:#EE2310;}
+            div.task a.edit{background:#16D982;}
+            div.task a.archive{background:#659FC6;}
+            
+            div.task a.done:hover{background:#fff;}
+            div.task a.erase:hover{background:#fff;}
+            div.task a.edit:hover{background:#fff;}
+            div.task a.archive:hover{background:#fff;}
         </style>
     </head>
     <body>
-        <table border="1">
+        <table>
             <tr>
-                <td valign="top">
+                <td valign="top" width="200">
                 <a href="/">Inicio</a><br>
-                <a href="/process/">Procesar Tareas Nuevas</a>
+                <h3>Acciones</h3>
+                <a href="/tasks/project/new/">Crear Proyecto</a><br>
+                Inbox: {{inbox_list.count}}<br>
+                {%if inbox_list.count %}
+                <a href="/process/">Procesar Tareas Nuevas:</a> <br>
+                {%endif%}
+                <h3>Proyectos</h3>
+                {%for object in project_list%}
+                    <a href="/tasks/project/open/{{object.id}}/">{{object.title}}</a><br>
+                {%endfor%}
                 </td>
                 <td>
-                {%block content%}     
-                
-                {%endblock%}     
+                {%block content%}{%endblock%}     
                 </td>
             </tr>
         </table>

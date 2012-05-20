@@ -4,7 +4,7 @@ from models import Task
 class InboxForm(ModelForm):
     class Meta:
         model = Task
-        exclude=['size','is_blocked','is_archived','is_closed',]
+        exclude=['size','is_blocked','is_archived','is_closed','project']
 
 class TaskForm(ModelForm):
     class Meta:
