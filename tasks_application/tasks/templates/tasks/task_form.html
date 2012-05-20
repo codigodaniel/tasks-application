@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%block content%}
+<h3>Tarea</h3>
+                    <table >
+                        <tr><td> 
+                            <form method="post" action="/tasks/task/{{object.id}}/edit/">
+                            <table>
+                               {{form}}
+                                <tr>
+                                    <td> </td>
+                                    <td><input type="submit"> </td>
+                                </tr>
+                            </table>
+                            </form>
+                        </td></tr>
+                    </table>                
+{%endblock%}

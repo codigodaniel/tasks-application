@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%block content%}
+<h3>Tarea</h3>
+                    <table >
+                        <tr><td> 
+                        {{object}}
+                            <form method="post" action="/tasks/task/{{object.id}}/delete/">
+                            <table>
+                                <tr>
+                                    <td> </td>
+                                    <td><input type="submit" value="Borrar definitivamente"> </td>
+                                </tr>
+                            </table>
+                            </form>
+                        </td></tr>
+                    </table>                
+{%endblock%}
