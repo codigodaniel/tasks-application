@@ -7,17 +7,18 @@
             td{padding:10px;}
             a{color:#28B937;}
             input[type=text]{font-size:20px;padding:3px;}
+            input[type=text], textarea{width:90%;}
             div.task{float:left;border:1px solid #999;padding:5px;margin:5px;}
             div.task a{display:inline-block;border:1px solid #999;height:30px;width:30px;margin:1px;}
-            div.task a.done{background:#9AB0B2;}
-            div.task a.erase{background:#EE2310;}
+            div.task a.archive{background:#9AB0B2;}
+            div.task a.delete{background:#EE2310;}
             div.task a.edit{background:#16D982;}
-            div.task a.archive{background:#659FC6;}
+            div.task a.delay{background:#659FC6;}
             
-            div.task a.done:hover{background:#fff;}
-            div.task a.erase:hover{background:#fff;}
-            div.task a.edit:hover{background:#fff;}
             div.task a.archive:hover{background:#fff;}
+            div.task a.delete:hover{background:#fff;}
+            div.task a.edit:hover{background:#fff;}
+            div.task a.delay:hover{background:#fff;}
         </style>
     </head>
     <body>
@@ -25,6 +26,10 @@
             <tr>
                 <td valign="top" width="200">
                 <a href="/">Inicio</a><br>
+                {%if user.is_authenticated%}    
+                Bienvenido {{user}} !! 
+                <a href="/accounts/logout/">Salir</a>
+                <br>
                 <h3>Acciones</h3>
                 <a href="/tasks/project/new/">Crear Proyecto</a><br>
                 Inbox: {{inbox_list.count}}<br>
@@ -35,9 +40,16 @@
                 {%for object in project_list%}
                     <a href="/tasks/project/open/{{object.id}}/">{{object.title}}</a><br>
                 {%endfor%}
+                {%else%}    
+                <a href="/accounts/login/">Entrar</a>
+                <br>
+                {%endif%}    
                 </td>
                 <td>
+                {%if user.is_authenticated%}
                 {%block content%}{%endblock%}     
+                {%endif%}    
+                {%block login%}{%endblock%}  
                 </td>
             </tr>
         </table>

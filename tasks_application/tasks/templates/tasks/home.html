@@ -36,6 +36,27 @@
                                 {% endif %}
                             </td></tr>
                         {%endfor%}
+                            <tr><td> 
+                                <h2>Bloqueadas</h2>
+                                {% if bloqued_tasks %}
+                                    {% for object in bloqued_tasks %}
+                                        {%include 'tasks/task_float.html'%}
+                                    {% endfor %}
+                                {% else %}
+                                    <p>No tasks are available.</p>
+                                {% endif %}
+                            </td></tr>
+                            <tr><td> 
+                                <h2>Pospuestas</h2>
+                                {% if delayed_tasks %}
+                                    {% for object in delayed_tasks %}
+                                        {%include 'tasks/task_float.html'%}
+                                    {% endfor %}
+                                {% else %}
+                                    <p>No tasks are available.</p>
+                                {% endif %}
+                            </td></tr>
+                        
                         
                     </table>     
 {%endblock%}
