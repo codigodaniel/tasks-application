@@ -7,7 +7,7 @@
                         <tr><td>
                             
                         <h3>Ingresa una Tarea al Inbox:</h3>
-                        <form method="post" action="/inbox/insert/">
+                        <form method="post" action="{%url tasks_inbox_insert%}">
                         <table>
                         {{form}}
                             <tr>
@@ -20,7 +20,7 @@
                         </td></tr>
                         <tr><td> 
                         {%if current_project%}
-                        Proyecto activo: <b>{{current_project}}</b> <a href="/tasks/project/open/0">desactivar</a>
+                        Proyecto activo: <b>{{current_project}}</b> <a href="{%url tasks_project_set 0%}">desactivar</a>
                         {%endif%}
                         <h3>Tareas listas para ejecutar:</h3>
                         </td></tr>

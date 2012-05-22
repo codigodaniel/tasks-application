@@ -7,7 +7,7 @@
                     <table >
                         <tr><td> 
                         {% if inbox_first %}
-                            <form method="post" action="/process/update/{{inbox_first.id}}/">
+                            <form method="post" action="{%url tasks_process_update inbox_first.id%}">
                             <table>
                                {{form}}
                                 <tr>

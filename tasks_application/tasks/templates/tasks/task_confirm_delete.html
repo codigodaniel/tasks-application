@@ -4,7 +4,7 @@
                     <table >
                         <tr><td> 
                         {{object}}
-                            <form method="post" action="/tasks/task/{{object.id}}/delete/">
+                            <form method="post" action="{%url tasks_task_delete object.id%}">
                             <table>
                                 <tr>
                                     <td> </td>

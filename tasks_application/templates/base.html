@@ -25,23 +25,23 @@
         <table>
             <tr>
                 <td valign="top" width="200">
-                <a href="/">Inicio</a><br>
+                <a href="{%url tasks_home%}">Inicio</a><br>
                 {%if user.is_authenticated%}    
                 Bienvenido {{user}} !! 
-                <a href="/accounts/logout/">Salir</a>
+                <a href="{%url accounts_logout%}">Salir</a>
                 <br>
                 <h3>Acciones</h3>
-                <a href="/tasks/project/new/">Crear Proyecto</a><br>
+                <a href="{%url tasks_project_new%}">Crear Proyecto</a><br>
                 Inbox: {{inbox_list.count}}<br>
                 {%if inbox_list.count %}
-                <a href="/process/">Procesar Tareas Nuevas:</a> <br>
+                <a href="{%url tasks_process%}">Procesar Tareas Nuevas:</a> <br>
                 {%endif%}
                 <h3>Proyectos</h3>
                 {%for object in project_list%}
-                    <a href="/tasks/project/open/{{object.id}}/">{{object.title}}</a><br>
+                    <a href="{%url tasks_project_set object.id %}">{{object.title}}</a><br>
                 {%endfor%}
                 {%else%}    
-                <a href="/accounts/login/">Entrar</a>
+                <a href="{%url accounts_login%}">Entrar</a>
                 <br>
                 {%endif%}    
                 </td>

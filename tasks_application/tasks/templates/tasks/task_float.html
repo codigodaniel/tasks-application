@@ -1,8 +1,8 @@
 
 <div class="task">
     <b>{{ object.title }}</b><br>
-    <a class="delete" title="Borrar definitivamente" href="/tasks/task/{{ object.id }}/delete/"></a>
-    <a class="archive" title="Archivar" href="/tasks/task/{{ object.id }}/archive/"></a>
-    <a class="delay" title="Posponer" href="/tasks/task/{{ object.id }}/delay/"></a>
-    <a class="edit" title="Editar" href="/tasks/task/{{ object.id }}/edit/"></a>
+    <a class="delete" title="Borrar definitivamente" href="{%url tasks_task_delete object.id%}"></a>
+    <a class="archive" title="Archivar" href="{%url tasks_task_archive object.id%}"></a>
+    <a class="delay" title="Posponer" href="{%url tasks_task_delay object.id%}"></a>
+    <a class="edit" title="Editar" href="{%url tasks_task_edit object.id%}"></a>
 </div>

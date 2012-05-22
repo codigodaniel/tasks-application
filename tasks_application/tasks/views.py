@@ -5,6 +5,7 @@ from models import Task
 from models import Project
 from forms import InboxForm
 from forms import TaskForm
+from django.core.urlresolvers import reverse
 
 from django.contrib.auth.decorators import login_required
 
@@ -49,7 +50,7 @@ def project_set(request, object_id):
     except:
         request.session['current_project']=None
         pass
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(reverse('tasks_home'))
     
 def process(request):
     r=global_data(request)
@@ -67,7 +68,7 @@ def task_delay(request, object_id):
         obj.save()
     except:
         pass
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(reverse('tasks_home'))
     
 def task_archive(request, object_id):
     try:
@@ -76,31 +77,4 @@ def task_archive(request, object_id):
         obj.save()
     except:
         pass
-    return HttpResponseRedirect('/')
-
-#~ from django.contrib.auth import authenticate, login
-#~ 
-#~ def login_view(request):
-    #~ m=''
-    #~ if request.method=='POST':
-        #~ username = request.POST['username']
-        #~ password = request.POST['password']
-        #~ user = authenticate(username=username, password=password)
-        #~ 
-        #~ if user is not None:
-            #~ if user.is_active:
-                #~ login(request, user)
-                #~ return HttpResponseRedirect('/')
-            #~ else:
-                #~ m='Cuenta deshabilitada'
-        #~ else:
-            #~ m='Usuario o clave incorrectos'
-    #~ r['login_message']=m
-    #~ return render_to_response('login.html', r, RequestContext(request))
-#~ 
-#~ from django.contrib.auth import logout
-#~ 
-#~ def logout_view(request):
-    #~ logout(request)
-    #~ return HttpResponseRedirect('/')
-
+    return HttpResponseRedirect(reverse('tasks_home'))
