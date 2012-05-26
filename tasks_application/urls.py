@@ -26,6 +26,9 @@ urlpatterns = patterns('',
 
     (r'^$','tasks.views.index',{},'tasks_home'),
     (r'^process/$','tasks.views.process',{},'tasks_process'),
+    
+    (r'^archive/$','tasks.views.task_archived',{},'tasks_archived'),
+    
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
 )

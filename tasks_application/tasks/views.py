@@ -96,3 +96,9 @@ def task_block(request, object_id):
     except:
         pass
     return HttpResponseRedirect(reverse('tasks_home'))
+    
+def task_archived(request):
+    r={}
+    r['form']=InboxForm()
+    r['archived_tasks']=Task.objects.filter(is_archived=True)
+    return render_to_response('tasks/task_archived.html', r, RequestContext(request))
