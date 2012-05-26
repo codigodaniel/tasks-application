@@ -130,7 +130,4 @@ LOGGING = {
     }
 }
 
-LOGIN_URL='/accounts/login/'
-LOGIN_REDIRECT_URL='/' 
-
 from local_settings import *

@@ -11,4 +11,5 @@ DATABASES = {
 }
 
 HOME_URL='/'
-
+LOGIN_REDIRECT_URL=HOME_URL 
+LOGIN_URL=HOME_URL+'/accounts/login/'
