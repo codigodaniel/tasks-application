@@ -5,6 +5,8 @@ from models import SIZE_CHOICES
 from django.forms.widgets import RadioSelect
 from django.forms.fields import ChoiceField
 
+from django.forms import Textarea
+
 class InboxForm(ModelForm):
     class Meta:
         model = Task
@@ -14,6 +16,9 @@ class TaskForm(ModelForm):
     size = ChoiceField(widget=RadioSelect, choices=SIZE_CHOICES, label='Magnitud')
     class Meta:
         model = Task
+        widgets = {
+            'project': RadioSelect(),
+        }
 
 class ProjectForm(ModelForm):
     class Meta:

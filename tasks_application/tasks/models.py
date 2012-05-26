@@ -19,7 +19,7 @@ class Project(models.Model):
 class Task(models.Model):
     title = models.CharField(max_length=255, verbose_name='Tarea')
     size = models.IntegerField(default=0, choices=SIZE_CHOICES, verbose_name='Magnitud')
-    project = models.ForeignKey(Project, null=True, verbose_name='Proyecto')
+    project = models.ForeignKey(Project, verbose_name='Proyecto')
     detail = models.TextField(max_length=2000,blank=True, null=True, verbose_name='Detalle')
     is_blocked=models.BooleanField(blank=True, default=0, verbose_name='Bloqueada')
     is_archived=models.BooleanField(blank=True, default=0, verbose_name='Archivada')
