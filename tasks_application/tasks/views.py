@@ -102,7 +102,6 @@ def task_block(request, object_id):
         pass
     return HttpResponseRedirect(reverse('tasks_home'))
 
-
 def create_user_owned_object(request, 
     model=None, 
     template_name=None,
@@ -146,3 +145,9 @@ def create_user_owned_object(request,
     #~ c = RequestContext(request, , context_processors)
     #~ apply_extra_context(extra_context, c)
     #~ return HttpResponse(t.render(c))
+    
+def task_archived(request):
+    r={}
+    r['form']=InboxForm()
+    r['archived_tasks']=Task.objects.filter(is_archived=True)
+    return render_to_response('tasks/task_archived.html', r, RequestContext(request))

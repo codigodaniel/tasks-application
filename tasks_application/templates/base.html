@@ -23,6 +23,7 @@
                 {%for object in project_list%}
                     <a href="{%url tasks_project_set object.id %}">{{object.title}}</a><br>
                 {%endfor%}
+                <a href="{%url tasks_archived%}"><h3>Archivo</h3></a><br>
                 {%else%}    
                 <a href="{%url accounts_login%}">Entrar</a>
                 <br>

@@ -1,6 +1,6 @@
 
 <div class="task">
-    <a title="Editar" href="{%url tasks_task_edit object.id%}">{{ object.title }} {%if object.detail %} (+) {% endif %}</a><br>
+    <a title="Editar" href="{%url tasks_task_edit object.id%}">{{ object.title }}</a>{%if object.detail %} (+) {% endif %}<br>
     <a class="button delete" title="Borrar definitivamente" href="{%url tasks_task_delete object.id%}"></a>
     <a class="button block" title="Bloquear" href="{%url tasks_task_block object.id%}"></a>
     <a class="button archive" title="Archivar" href="{%url tasks_task_archive object.id%}"></a>
