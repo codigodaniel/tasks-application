@@ -59,7 +59,10 @@ def process(request):
         inbox_first=r['inbox_list'][0]
     r['form']=TaskForm(instance=inbox_first)
     r['inbox_first']=inbox_first
-    return render_to_response('tasks/process.html', r, RequestContext(request))
+    if inbox_first:
+        return render_to_response('tasks/process.html', r, RequestContext(request))
+    else:
+        return HttpResponseRedirect(reverse('tasks_home'))
 
 def task_delay(request, object_id):
     try:

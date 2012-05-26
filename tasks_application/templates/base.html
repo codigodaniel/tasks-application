@@ -14,10 +14,11 @@
                 <br>
                 <h3>Acciones</h3>
                 <a href="{%url tasks_project_new%}">Crear Proyecto</a><br>
-                <p class="inbox inbox-{{inbox_list.count}}">Inbox: {{inbox_list.count}}</p>
+                <p class="inbox inbox-{%if not inbox_list %}0{%else%}{{inbox_list.count}}{%endif%}">Inbox: {{inbox_list.count}}<br>
                 {%if inbox_list.count %}
-                <a href="{%url tasks_process%}">Procesar Inbox</a> <br>
+                <a href="{%url tasks_process%}">Procesar Inbox</a> <br> 
                 {%endif%}
+                </p>
                 <h3>Proyectos</h3>
                 {%for object in project_list%}
                     <a href="{%url tasks_project_set object.id %}">{{object.title}}</a><br>
