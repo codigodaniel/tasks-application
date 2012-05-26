@@ -17,12 +17,12 @@ class Project(models.Model):
         return self.title
 
 class Task(models.Model):
-    project = models.ForeignKey(Project,blank=True, null=True, verbose_name='Proyecto')
     title = models.CharField(max_length=255, verbose_name='Tarea')
+    size = models.IntegerField(default=0, choices=SIZE_CHOICES, verbose_name='Magnitud')
+    project = models.ForeignKey(Project,blank=True, null=True, verbose_name='Proyecto')
     detail = models.TextField(max_length=2000,blank=True, null=True, verbose_name='Detalle')
     is_blocked=models.BooleanField(blank=True, default=0, verbose_name='Bloqueada')
     is_archived=models.BooleanField(blank=True, default=0, verbose_name='Archivada')
     is_delayed=models.BooleanField(blank=True, default=0, verbose_name='Pospuesta')
-    size = models.IntegerField(default=0, choices=SIZE_CHOICES, verbose_name='Magnitud')
     def __unicode__(self):
         return self.title
