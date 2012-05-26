@@ -1,25 +1,7 @@
 <html>
     <head>
-        <style>
-            *{font-family:Arial;color:#30314C;}
-            body{background:#F0F0F0;}
-            table{width:98%;margin:10px;border:1px solid #999;}
-            td{padding:10px;}
-            a{color:#28B937;}
-            input[type=text]{font-size:20px;padding:3px;}
-            input[type=text], textarea{width:90%;}
-            div.task{float:left;border:1px solid #999;padding:5px;margin:5px;}
-            div.task a{display:inline-block;border:1px solid #999;height:30px;width:30px;margin:1px;}
-            div.task a.archive{background:#9AB0B2;}
-            div.task a.delete{background:#EE2310;}
-            div.task a.edit{background:#16D982;}
-            div.task a.delay{background:#659FC6;}
-            
-            div.task a.archive:hover{background:#fff;}
-            div.task a.delete:hover{background:#fff;}
-            div.task a.edit:hover{background:#fff;}
-            div.task a.delay:hover{background:#fff;}
-        </style>
+        <title>Mind Relax</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
     </head>
     <body>
         <table>
@@ -32,9 +14,9 @@
                 <br>
                 <h3>Acciones</h3>
                 <a href="{%url tasks_project_new%}">Crear Proyecto</a><br>
-                Inbox: {{inbox_list.count}}<br>
+                <p class="inbox inbox-{{inbox_list.count}}">Inbox: {{inbox_list.count}}</p>
                 {%if inbox_list.count %}
-                <a href="{%url tasks_process%}">Procesar Tareas Nuevas:</a> <br>
+                <a href="{%url tasks_process%}">Procesar Inbox</a> <br>
                 {%endif%}
                 <h3>Proyectos</h3>
                 {%for object in project_list%}

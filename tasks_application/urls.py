@@ -36,4 +36,9 @@ urlpatterns += patterns('',
     (r'^process/update/(?P<object_id>\d+)/$','django.views.generic.create_update.update_object',{'form_class':TaskForm,'post_save_redirect':settings.HOME_URL+'process/'},'tasks_process_update'),
 )
 
+urlpatterns += patterns('',
+	(r'^static/(?P<path>.*)$', 'django.views.static.serve',{
+	'document_root': settings.RUTA_BASE+'/static'
+	})
+)
 

@@ -1,5 +1,7 @@
 # Django settings for tasks_application project.
 
+import os
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -129,5 +131,8 @@ LOGGING = {
         },
     }
 }
+
+#~ print os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RUTA_BASE=os.path.dirname(os.path.abspath(__file__))
 
 from local_settings import *
