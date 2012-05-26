@@ -64,7 +64,10 @@ def process(request):
 def task_delay(request, object_id):
     try:
         obj=Task.objects.get(pk=object_id)
-        obj.is_delayed=True
+        if obj.is_delayed:
+            obj.is_delayed=False
+        else:
+            obj.is_delayed=True 
         obj.save()
     except:
         pass
@@ -74,6 +77,18 @@ def task_archive(request, object_id):
     try:
         obj=Task.objects.get(pk=object_id)
         obj.is_archived=True
+        obj.save()
+    except:
+        pass
+    return HttpResponseRedirect(reverse('tasks_home'))
+
+def task_block(request, object_id):
+    try:
+        obj=Task.objects.get(pk=object_id)
+        if obj.is_blocked:
+            obj.is_blocked=False
+        else:
+            obj.is_blocked=True 
         obj.save()
     except:
         pass
