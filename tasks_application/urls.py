@@ -3,7 +3,7 @@ from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from tasks.forms import InboxForm, TaskForm
+from tasks.forms import InboxForm, TaskForm, ProjectForm
 from tasks.models import Project
 from tasks.models import Task
 
@@ -11,12 +11,11 @@ from django.conf import settings
 
 urlpatterns = patterns('',
     (r'^tasks/project/open/(?P<object_id>\d+)/$','tasks.views.project_set',{},'tasks_project_set'),
-
     (r'^tasks/task/(?P<object_id>\d+)/archive/$','tasks.views.task_archive',{},'tasks_task_archive'),
-
     (r'^tasks/task/(?P<object_id>\d+)/delay/$','tasks.views.task_delay',{},'tasks_task_delay'),
-    
     (r'^tasks/task/(?P<object_id>\d+)/block/$','tasks.views.task_block',{},'tasks_task_block'),
+
+    (r'^tasks/project/new/$','tasks.views.create_user_owned_object',{'model':Project,'form_class':ProjectForm,'post_save_redirect':settings.HOME_URL},'tasks_project_new'),
 
     #~ (r'^/accounts/login/','tasks.views.login_view',{}),
     (r'^accounts/login/$', 'django.contrib.auth.views.login',{},'accounts_login'),
@@ -31,7 +30,7 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('',
-    (r'^tasks/project/new/$','django.views.generic.create_update.create_object',{'model':Project,'post_save_redirect':settings.HOME_URL},'tasks_project_new'),
+    #~ (r'^tasks/project/new/$','django.views.generic.create_update.create_object',{'model':Project,'post_save_redirect':settings.HOME_URL},'tasks_project_new'),
     (r'^tasks/task/(?P<object_id>\d+)/edit/$','django.views.generic.create_update.update_object',{'form_class':TaskForm,'post_save_redirect':settings.HOME_URL},'tasks_task_edit'),
     (r'^tasks/task/(?P<object_id>\d+)/delete/$','django.views.generic.create_update.delete_object',{'model':Task,'post_delete_redirect':settings.HOME_URL},'tasks_task_delete'),
     (r'^inbox/insert/$','django.views.generic.create_update.create_object',{'form_class':InboxForm,'post_save_redirect':settings.HOME_URL},'tasks_inbox_insert'),

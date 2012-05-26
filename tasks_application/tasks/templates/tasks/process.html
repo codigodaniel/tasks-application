@@ -9,9 +9,13 @@
                         {% if inbox_first %}
                             <form method="post" action="{%url tasks_process_update inbox_first.id%}">
                             <table>
+                                <tr>
+                                    <td><a title="Borrar definitivamente" href="{%url tasks_task_delete inbox_first.id%}">Eliminar</a> </td>
+                                    <td><input type="submit" value="Siguiente"> </td>
+                                </tr>
                                {{form}}
                                 <tr>
-                                    <td> </td>
+                                    <td><a title="Borrar definitivamente" href="{%url tasks_task_delete inbox_first.id%}">Eliminar</a> </td>
                                     <td><input type="submit" value="Siguiente"> </td>
                                 </tr>
                             </table>

@@ -7,6 +7,11 @@ from forms import InboxForm
 from forms import TaskForm
 from django.core.urlresolvers import reverse
 
+from django.views.generic.create_update import get_model_and_form_class
+from django.views.generic.create_update import redirect
+from django.utils.translation import ugettext
+from django.contrib import messages
+
 from django.contrib.auth.decorators import login_required
 
 def global_data(request):
@@ -96,3 +101,48 @@ def task_block(request, object_id):
     except:
         pass
     return HttpResponseRedirect(reverse('tasks_home'))
+
+
+def create_user_owned_object(request, 
+    model=None, 
+    template_name=None,
+        #~ template_loader=loader, 
+        extra_context=None, 
+        post_save_redirect=None,
+        login_required=False, 
+        context_processors=None, 
+        form_class=None):
+    """
+    """
+    if extra_context is None: extra_context = {}
+    if login_required and not request.user.is_authenticated():
+        return redirect_to_login(request.path)
+
+    model, form_class = get_model_and_form_class(model, form_class)
+    if request.method == 'POST':
+        print request.POST
+        form = form_class(request.POST, request.FILES)
+        if form.is_valid():
+            #~ new_object = Task()
+            new_object = form.save(commit=False)
+            #~ relation with session user
+            new_object.owner=request.user
+            new_object.save()
+
+            msg = ugettext("The %(verbose_name)s was created successfully.") %\
+                                    {"verbose_name": model._meta.verbose_name}
+            messages.success(request, msg, fail_silently=True)
+            return redirect(post_save_redirect, new_object)
+    else:
+        form = form_class()
+
+    # Create the template, context, response
+    if not template_name:
+        template_name = "%s/%s_form.html" % (model._meta.app_label, model._meta.object_name.lower())
+        
+    return render_to_response(template_name, {'form': form}, RequestContext(request))
+    
+    #~ t = template_loader.get_template(template_name)
+    #~ c = RequestContext(request, , context_processors)
+    #~ apply_extra_context(extra_context, c)
+    #~ return HttpResponse(t.render(c))
