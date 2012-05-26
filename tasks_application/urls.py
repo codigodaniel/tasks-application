@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     (r'^tasks/task/(?P<object_id>\d+)/archive/$','tasks.views.task_archive',{},'tasks_task_archive'),
 
     (r'^tasks/task/(?P<object_id>\d+)/delay/$','tasks.views.task_delay',{},'tasks_task_delay'),
+    
+    (r'^tasks/task/(?P<object_id>\d+)/block/$','tasks.views.task_block',{},'tasks_task_block'),
 
     #~ (r'^/accounts/login/','tasks.views.login_view',{}),
     (r'^accounts/login/$', 'django.contrib.auth.views.login',{},'accounts_login'),
