@@ -29,6 +29,7 @@ def project_set(request, object_id):
     
 def process(request):
     r={}
+    r['inbox_list']=Task.objects.filter(size=0)
     inbox_first=None
     if r['inbox_list']:
         inbox_first=r['inbox_list'][0]
