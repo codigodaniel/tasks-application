@@ -14,6 +14,8 @@ urlpatterns = patterns('tasks.views',
     (r'^task/(?P<object_id>\d+)/archive/$','task_archive',{},'tasks_task_archive'),
     (r'^task/(?P<object_id>\d+)/delay/$','task_delay',{},'tasks_task_delay'),
     
+    (r'^task/(?P<object_id>\d+)/duplicate/$','task_duplicate',{},'tasks_task_duplicate'),
+    
     (r'^process/$','process',{},'tasks_process'),
         
     (r'^archive/$','task_archived',{},'tasks_archived'),

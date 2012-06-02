@@ -102,6 +102,15 @@ def task_block(request, object_id):
         pass
     return HttpResponseRedirect(reverse('tasks_home'))
 
+def task_duplicate(request, object_id):
+    try:
+        obj=Task.objects.get(pk=object_id)
+        obj.pk=None
+        obj.save()
+    except:
+        pass
+    return HttpResponseRedirect(reverse('tasks_home'))
+
 def create_user_owned_object(request, 
     model=None, 
     template_name=None,
