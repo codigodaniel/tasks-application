@@ -7,7 +7,7 @@ from forms import InboxForm
 from forms import TaskForm
 from django.core.urlresolvers import reverse
 
-from django.views.generic.create_update import get_model_and_form_class
+from django.views.generic.create_update import get_model_and_form_class, lookup_object
 from django.views.generic.create_update import redirect
 from django.utils.translation import ugettext
 from django.contrib import messages
@@ -128,7 +128,6 @@ def create_user_owned_object(request,
 
     model, form_class = get_model_and_form_class(model, form_class)
     if request.method == 'POST':
-        print request.POST
         form = form_class(request.POST, request.FILES)
         if form.is_valid():
             #~ new_object = Task()
@@ -150,13 +149,54 @@ def create_user_owned_object(request,
         
     return render_to_response(template_name, {'form': form}, RequestContext(request))
     
-    #~ t = template_loader.get_template(template_name)
-    #~ c = RequestContext(request, , context_processors)
-    #~ apply_extra_context(extra_context, c)
-    #~ return HttpResponse(t.render(c))
-    
 def task_archived(request):
     r={}
     r['form']=InboxForm()
     r['archived_tasks']=Task.objects.filter(is_archived=True)
     return render_to_response('tasks/task_archived.html', r, RequestContext(request))
+
+
+
+
+    if not template_name:
+        template_name = "%s/%s_form.html" % (model._meta.app_label, model._meta.object_name.lower())
+    t = template_loader.get_template(template_name)
+    c = RequestContext(request, {
+        'form': form,
+        template_object_name: obj,
+    }, context_processors)
+    apply_extra_context(extra_context, c)
+    response = HttpResponse(t.render(c))
+    populate_xheaders(request, response, model, getattr(obj, obj._meta.pk.attname))
+    return response
+
+def save_or_continue_editing(request, 
+        model=None, object_id=None, slug=None,
+        slug_field='slug', template_name=None,
+         #~ template_loader=loader,
+        extra_context=None, post_save_redirect=None, login_required=False,
+        context_processors=None, template_object_name='object',
+        form_class=None):
+    """
+    """
+    if extra_context is None: extra_context = {}
+    if login_required and not request.user.is_authenticated():
+        return redirect_to_login(request.path)
+    model, form_class = get_model_and_form_class(model, form_class)
+    obj = lookup_object(model, object_id, slug, slug_field)
+
+    if request.method == 'POST':
+        form = form_class(request.POST, request.FILES, instance=obj)
+        if "_continue" in request.POST:
+            print 'continuar editando'
+        #~ if form.is_valid():
+            #~ obj = form.save()
+            #~ msg = ugettext("The %(verbose_name)s was updated successfully.") %\
+                                    #~ {"verbose_name": model._meta.verbose_name}
+            #~ messages.success(request, msg, fail_silently=True)
+            #~ return redirect(post_save_redirect, obj)
+    else:
+        form = form_class(instance=obj)
+    if not template_name:
+        template_name = "%s/%s_form.html" % (model._meta.app_label, model._meta.object_name.lower())
+    return render_to_response(template_name, {'form': form,'object':obj}, RequestContext(request))

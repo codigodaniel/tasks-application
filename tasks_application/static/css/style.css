@@ -5,7 +5,7 @@ table{width:98%;margin:10px;border:1px solid #999;}
 td{padding:10px;}
 a{color:#28B937;}
 input[type=text]{font-size:20px;padding:3px;}
-input[type=text], textarea{width:90%;}
+input[type=text],input[type=password], textarea{width:90%;}
 
 div.task{float:left;border:1px solid #999;padding:5px;margin:5px;width:160px;}
 div.task a {color:green;padding:3px;font-weight:700;font-size:20px;}
