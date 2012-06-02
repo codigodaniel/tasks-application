@@ -3,7 +3,8 @@
 <h3>Tarea</h3>
                     <table >
                         <tr><td> 
-                        {{object}}
+                        <strong>{{object}}</strong><br>
+                        {{object.detail}}
                             <form method="post" action="{%url tasks_task_delete object.id%}">
                             <table>
                                 <tr>
