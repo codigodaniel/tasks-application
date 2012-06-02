@@ -8,12 +8,14 @@ input[type=text]{font-size:20px;padding:3px;}
 input[type=text],input[type=password], textarea{width:90%;}
 
 div.task{float:left;border:1px solid #999;padding:5px;margin:5px;width:160px;}
+div.task-highlight{float:left;border:1px solid #F57D1B;padding:5px;margin:5px;width:160px;}
 div.task a {color:green;padding:3px;font-weight:700;font-size:20px;}
 div.task a.button{display:inline-block;border:1px solid #999;height:25px;width:25px;margin:1px;border-radius:10px;}
 div.task a.archive{background:#9AB0B2;}
 div.task a.delete{background:#EE2310;}
 div.task a.edit{background:#16D982;}
 div.task a.delay{background:#659FC6;}
+div.task a.duplicate{background:blue;}
 
 div.task a.archive:hover{background:#fff;}
 div.task a.delete:hover{background:#fff;}

@@ -24,6 +24,7 @@ class Task(models.Model):
     is_blocked=models.BooleanField(blank=True, default=0, verbose_name='Bloqueada')
     is_archived=models.BooleanField(blank=True, default=0, verbose_name='Archivada')
     is_delayed=models.BooleanField(blank=True, default=0, verbose_name='Pospuesta')
+    is_highlighted=models.BooleanField(blank=True, default=0, verbose_name='Destacada')
     def __unicode__(self):
         return self.title
 
