@@ -166,8 +166,8 @@ def update_task(request,
             msg = ugettext("The %(verbose_name)s was updated successfully.") %\
                                     {"verbose_name": model._meta.verbose_name}
             messages.success(request, msg, fail_silently=True)
-        if "_continue" not in request.POST:
-            return redirect(post_save_redirect, obj)
+            if "_continue" not in request.POST:
+                return redirect(post_save_redirect, obj)
     else:
         form = form_class(instance=obj)
     if not template_name:
