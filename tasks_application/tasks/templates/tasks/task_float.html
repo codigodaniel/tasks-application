@@ -1,5 +1,6 @@
 
-<div class="task">
+<div class="{%if object.is_highlighted %}task-highlight{%else%}task{%endif%}">
+<p class="inbox inbox-{%if not inbox_list %}0{%else%}{{inbox_list.count}}{%endif%}">
     <a title="Editar" href="{%url tasks_task_edit object.id%}">{{ object.title }}</a>{%if object.detail %} (+) {% endif %}<br>
     <a class="button delete" title="Borrar definitivamente" href="{%url tasks_task_delete object.id%}"></a>
     <a class="button block" title="Bloquear" href="{%url tasks_task_block object.id%}"></a>
