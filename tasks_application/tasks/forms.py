@@ -14,12 +14,13 @@ class InboxForm(ModelForm):
 
 class TaskForm(ModelForm):
     project_title = CharField(widget=TextInput, label='Proyecto')
+    project = CharField(widget=HiddenInput, required=False)
     size = ChoiceField(widget=RadioSelect, choices=SIZE_CHOICES, label='Magnitud')
     class Meta:
         model = Task
-        widgets = {
-            'project': HiddenInput(required=False),
-        }
+        #~ widgets = {
+            #~ 'project': HiddenInput(),
+        #~ }
         fields = ['project','project_title','title','size','detail','is_blocked','is_archived','is_delayed','is_highlighted']
 
 class ProjectForm(ModelForm):

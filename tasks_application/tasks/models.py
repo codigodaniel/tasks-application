@@ -19,7 +19,7 @@ class Project(models.Model):
 class Task(models.Model):
     title = models.CharField(max_length=255, verbose_name='Tarea')
     size = models.IntegerField(default=0, choices=SIZE_CHOICES, verbose_name='Magnitud')
-    project = models.ForeignKey(Project, verbose_name='Proyecto')
+    project = models.ForeignKey(Project, verbose_name='Proyecto',blank=True, null=True)
     detail = models.TextField(max_length=2000,blank=True, null=True, verbose_name='Detalle')
     is_blocked=models.BooleanField(blank=True, default=0, verbose_name='Bloqueada')
     is_archived=models.BooleanField(blank=True, default=0, verbose_name='Archivada')
@@ -29,10 +29,12 @@ class Task(models.Model):
         return self.title
 
 def get_or_create_by_title(owner,title):
+    p=None
     ps=Project.objects.filter(owner=owner).filter(title=title)
     if ps:
         p=ps[0]
     else:
-        p=Project(title=title,owner=owner)
-        p.save()
+        if title:
+            p=Project(title=title,owner=owner)
+            p.save()
     return p

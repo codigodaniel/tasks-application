@@ -159,6 +159,7 @@ def update_task(request,
         #~ recuperar o crear el proyecto
         p=get_or_create_by_title(request.user,request.POST.get('project_title'))
         form = form_class(request.POST, request.FILES, instance=obj)
+        del form.fields['project']
         if form.is_valid():
             obj = form.save(commit=False)
             obj.project=p
