@@ -18,9 +18,9 @@ class TaskForm(ModelForm):
     class Meta:
         model = Task
         widgets = {
-            'project': HiddenInput(),
+            'project': HiddenInput(required=False),
         }
-        fields = ['project','project_title','title','size','detail','is_blocked','is_archived','is_delayed']
+        fields = ['project','project_title','title','size','detail','is_blocked','is_archived','is_delayed','is_highlighted']
 
 class ProjectForm(ModelForm):
     class Meta:
