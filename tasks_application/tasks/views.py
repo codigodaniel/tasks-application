@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from models import Task
 from models import Project
+from models import get_or_create_by_title
 from forms import InboxForm
 from forms import TaskForm
 from django.core.urlresolvers import reverse
@@ -141,15 +142,12 @@ def task_archived(request):
     populate_xheaders(request, response, model, getattr(obj, obj._meta.pk.attname))
     return response
 
-def save_or_continue_editing(request, 
+def update_task(request, 
         model=None, object_id=None, slug=None,
         slug_field='slug', template_name=None,
-         #~ template_loader=loader,
         extra_context=None, post_save_redirect=None, login_required=False,
         context_processors=None, template_object_name='object',
         form_class=None):
-    """
-    """
     if extra_context is None: extra_context = {}
     if login_required and not request.user.is_authenticated():
         return redirect_to_login(request.path)
@@ -157,9 +155,14 @@ def save_or_continue_editing(request,
     obj = lookup_object(model, object_id, slug, slug_field)
 
     if request.method == 'POST':
+        print request.POST
+        #~ recuperar o crear el proyecto
+        p=get_or_create_by_title(request.user,request.POST.get('project_title'))
         form = form_class(request.POST, request.FILES, instance=obj)
         if form.is_valid():
-            obj = form.save()
+            obj = form.save(commit=False)
+            obj.project=p
+            obj.save()
             msg = ugettext("The %(verbose_name)s was updated successfully.") %\
                                     {"verbose_name": model._meta.verbose_name}
             messages.success(request, msg, fail_silently=True)
@@ -170,3 +173,32 @@ def save_or_continue_editing(request,
     if not template_name:
         template_name = "%s/%s_form.html" % (model._meta.app_label, model._meta.object_name.lower())
     return render_to_response(template_name, {'form': form,'object':obj}, RequestContext(request))
+
+#~ def update_task(request, 
+        #~ model=None, object_id=None, slug=None,
+        #~ slug_field='slug', template_name=None,
+        #~ extra_context=None, post_save_redirect=None, login_required=False,
+        #~ context_processors=None, template_object_name='object',
+        #~ form_class=None):
+    #~ """
+    #~ """
+    #~ if extra_context is None: extra_context = {}
+    #~ if login_required and not request.user.is_authenticated():
+        #~ return redirect_to_login(request.path)
+    #~ model, form_class = get_model_and_form_class(model, form_class)
+    #~ obj = lookup_object(model, object_id, slug, slug_field)
+#~ 
+    #~ if request.method == 'POST':
+        #~ form = form_class(request.POST, request.FILES, instance=obj)
+        #~ if form.is_valid():
+            #~ obj = form.save()
+            #~ msg = ugettext("The %(verbose_name)s was updated successfully.") %\
+                                    #~ {"verbose_name": model._meta.verbose_name}
+            #~ messages.success(request, msg, fail_silently=True)
+        #~ if "_continue" not in request.POST:
+            #~ return redirect(post_save_redirect, obj)
+    #~ else:
+        #~ form = form_class(instance=obj)
+    #~ if not template_name:
+        #~ template_name = "%s/%s_form.html" % (model._meta.app_label, model._meta.object_name.lower())
+    #~ return render_to_response(template_name, {'form': form,'object':obj}, RequestContext(request))

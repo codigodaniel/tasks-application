@@ -1,6 +1,21 @@
 {%extends 'base.html'%}
 {%block title%} {{object}} {%endblock%}
 {%block content%}
+<script>
+    
+    //$(document).ready(function(){
+    //$('input.filtro').keyup(function(e){
+    //    search();
+    //});
+    //make_autocomplete('carrera','careers','Carrera activa');
+    //make_autocomplete('curso','courses','Curso activo');
+    //make_autocomplete('profesor','professors','Profesor activo');
+    //make_autocomplete('materia','signatures','Materia activa');
+  //  $("#carrera").focus();
+//    var s=new String('hola');
+//    alert(s.toUpperCase());
+//});
+</script>
 <h3>Tarea</h3>
                     <table >
                         <tr><td> 
@@ -16,6 +31,12 @@
                                     </td>
                                 </tr>
                                {{form}}
+                               <tr>
+                                   <td>Project</td>
+                                   <td>
+                                       <input type="text" id="project_title" name="project_title">
+                                   </td>
+                               </tr>
                                 <tr>
                                     <td></td>
                                     <td>

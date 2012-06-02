@@ -26,3 +26,12 @@ class Task(models.Model):
     is_delayed=models.BooleanField(blank=True, default=0, verbose_name='Pospuesta')
     def __unicode__(self):
         return self.title
+
+def get_or_create_by_title(owner,title):
+    ps=Project.objects.filter(owner=owner).filter(title=title)
+    if ps:
+        p=ps[0]
+    else:
+        p=Project(title=title,owner=owner)
+        p.save()
+    return p
