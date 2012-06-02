@@ -7,19 +7,23 @@
                             <form method="post" action="{%url tasks_task_edit object.id%}">
                             <table>
                                 <tr>
-                                    <td><a title="Borrar definitivamente" href="{%url tasks_task_delete object.id%}">Eliminar</a></td>
-                                    <td><input type="submit" value="Save and continue editing" name="_continue"></td>
-                                    <td><input type="submit"> </td>
+                                    <td></td>
+                                    <td>
+                                        <a title="Borrar definitivamente" href="{%url tasks_task_delete object.id%}">Eliminar</a>
+                                        <input type="submit" value="Save">   
+                                        <input type="submit" value="Save and continue editing" name="_continue">
+                                        
+                                    </td>
                                 </tr>
                                {{form}}
                                 <tr>
-                                    <td><a title="Borrar definitivamente" href="{%url tasks_task_delete object.id%}">Eliminar</a></td>
-                                    <td><input type="submit" value="Save and continue editing" name="_continue"></td>
-                                    <td><input type="submit"> </td>
-                                </tr>
-                                <tr>
                                     <td></td>
-                                    <td><input type="submit" value="Save and continue editing" name="_continue"></td>
+                                    <td>
+                                        <a title="Borrar definitivamente" href="{%url tasks_task_delete object.id%}">Eliminar</a>
+                                        <input type="submit" value="Save">  
+                                        <input type="submit" value="Save and continue editing" name="_continue">
+                                        
+                                    </td>
                                 </tr>
                             </table>
                             </form>
