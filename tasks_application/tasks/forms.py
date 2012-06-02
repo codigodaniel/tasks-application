@@ -7,13 +7,17 @@ from django.forms.fields import ChoiceField, CharField
 
 from django.forms import Textarea
 
+project_title_field = CharField(widget=TextInput, label='Proyecto')
+
 class InboxForm(ModelForm):
+    project_title=project_title_field
     class Meta:
         model = Task
-        exclude=['size','is_blocked','is_archived','is_delayed','project']
+        exclude=['size','is_blocked','is_archived','is_delayed','project', 'is_highlighted']
+        fields = ['project','project_title','title','size','detail','is_blocked','is_archived','is_delayed','is_highlighted']
 
 class TaskForm(ModelForm):
-    project_title = CharField(widget=TextInput, label='Proyecto')
+    project_title=project_title_field
     project = CharField(widget=HiddenInput, required=False)
     size = ChoiceField(widget=RadioSelect, choices=SIZE_CHOICES, label='Magnitud')
     class Meta:
