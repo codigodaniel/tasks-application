@@ -10,29 +10,37 @@
                 <td valign="top" width="200">
                 <a href="{%url tasks_home%}">Inicio</a><br>
                 {%if user.is_authenticated%}    
-                Bienvenido {{user}} !! 
-                <a href="{%url accounts_logout%}">Salir</a>
-                <br>
-                <h3>Acciones</h3>
-                <a href="{%url tasks_project_new%}">Crear Proyecto</a><br>
-                <p class="inbox inbox-{%if not inbox_list %}0{%else%}{{inbox_list.count}}{%endif%}">Inbox: {{inbox_list.count}}<br>
-                {%if inbox_list.count %}
-                <a href="{%url tasks_process%}">Procesar Inbox</a> <br> 
-                {%endif%}
-                </p>
-                <h3>Proyectos</h3>
-                {%for object in project_list%}
-                    <a href="{%url tasks_project_set object.id %}">{{object.title}}</a><br>
-                {%endfor%}
-                <a href="{%url tasks_archived%}"><h3>Archivo</h3></a><br>
+                    Bienvenido {{user}} !! 
+                    <a href="{%url accounts_logout%}">Salir</a><br>
+                    <h3>Acciones</h3>
+                    <a href="{%url tasks_project_new%}">Crear Proyecto</a><br>
+                    <p class="inbox inbox-{%if not inbox_list %}0{%else%}{{inbox_list.count}}{%endif%}">Inbox: {{inbox_list.count}}<br>
+                    {%if inbox_list.count %}
+                        <a href="{%url tasks_process%}">Procesar Inbox</a><br> 
+                    {%endif%}
+                    </p>
+                    <h3>Proyectos</h3>
+                    {%for object in project_list%}
+                        <a href="{%url tasks_project_set object.id %}">
+                        {%if object == current_project %} 
+                            <strong>{{object.title}}</strong> 
+                        {%else%} 
+                            {{object.title}} 
+                        {%endif%}
+                        </a><br>
+                    {%endfor%}
+                    {%if current_project%}
+                        <a href="{%url tasks_project_set 0%}"><h3>Desactivar Proyecto Actual</h3></a>
+                    {%endif%}
+                    <a href="{%url tasks_archived%}"><h3>Archivo</h3></a><br>
                 {%else%}    
-                <a href="{%url accounts_login%}">Entrar</a>
-                <br>
-                {%endif%}    
+                    <a href="{%url accounts_login%}">Entrar</a>
+                    <br>
+                {%endif%}
                 </td>
                 <td>
                 {%if user.is_authenticated%}
-                {%block content%}{%endblock%}     
+                    {%block content%}{%endblock%}     
                 {%endif%}    
                 {%block login%}{%endblock%}  
                 </td>
