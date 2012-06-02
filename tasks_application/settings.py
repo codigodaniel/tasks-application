@@ -135,4 +135,11 @@ LOGGING = {
 #~ print os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RUTA_BASE=os.path.dirname(os.path.abspath(__file__))
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'tasks.context_processor.tasks_dicts',
+)
+
+#~ print TEMPLATE_CONTEXT_PROCESSORS
+
 from local_settings import *
