@@ -23,6 +23,7 @@ def global_data(request):
 
     r['pending_list']=[]
     r['current_project']=request.session.get('current_project')
+        
     active_tasks=Task.objects.filter(is_archived=False, is_blocked=False, is_delayed=False)
     
     bloqued_tasks=Task.objects.filter(is_blocked=True)
