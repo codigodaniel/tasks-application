@@ -1,9 +1,30 @@
 {%extends 'base.html'%}
 {%block title%} {{object}} {%endblock%}
-{%block content%}
+{%block extra_head%}
+<link rel="stylesheet" type="text/css" href="{%url static 'js/jquery.autocomplete.css'%}" />
+<script src="{%url static 'js/jquery.autocomplete.min.js'%}" ></script>
 <script>
-    
-    //$(document).ready(function(){
+    var WWW_ROOT=''
+    $(document).ready(function(){
+        console.log('a');
+        $("#id_project_title").autocomplete(WWW_ROOT+'/json', {
+		multiple: false,
+		dataType: "json",
+		parse: function(data) {
+			return $.map(data, function(row) {
+				return {
+					data: row,
+					value: row.name,
+					result: row.name
+				}
+			});
+		},
+		formatItem: function(item) {
+			return format(item);
+		}
+	}).result(function(e, item){
+       console.log(item);
+	});
     //$('input.filtro').keyup(function(e){
     //    search();
     //});
@@ -14,8 +35,11 @@
   //  $("#carrera").focus();
 //    var s=new String('hola');
 //    alert(s.toUpperCase());
-//});
+    });
 </script>
+
+{%endblock%}
+{%block content%}
 <h3>Tarea</h3>
                     <table >
                         <tr><td> 

@@ -2,6 +2,8 @@
     <head>
         <title>{%block title%}{%endblock%}</title>  
         <link rel="stylesheet" type="text/css" href="{%url static 'css/style.css'%}" />
+        <script src="{%url static 'js/jquery.js'%}" ></script>
+        {%block extra_head%}{%endblock%}
     </head>
     <body>
         <table>

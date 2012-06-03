@@ -203,3 +203,36 @@ def update_task(request,
     #~ if not template_name:
         #~ template_name = "%s/%s_form.html" % (model._meta.app_label, model._meta.object_name.lower())
     #~ return render_to_response(template_name, {'form': form,'object':obj}, RequestContext(request))
+
+def task_create(request, 
+    model=None, 
+    template_name=None,
+        #~ template_loader=loader, 
+        extra_context=None, 
+        post_save_redirect=None,
+        login_required=False, 
+        context_processors=None, 
+        form_class=None):
+    if extra_context is None: extra_context = {}
+    if login_required and not request.user.is_authenticated():
+        return redirect_to_login(request.path)
+
+    model, form_class = get_model_and_form_class(model, form_class)
+    if request.method == 'POST':
+        p=get_or_create_by_title(request.user,request.POST.get('project_title'))
+        form = form_class(request.POST, request.FILES)
+        #~ del form.fields['project']
+        if form.is_valid():
+            #~ new_object = Task()
+            new_object = form.save(commit=False)
+            new_object.project=p
+            new_object.save()
+            msg = ugettext("The %(verbose_name)s was created successfully.") %\
+                                    {"verbose_name": model._meta.verbose_name}
+            messages.success(request, msg, fail_silently=True)
+            return redirect(post_save_redirect, new_object)
+    else:
+        form = form_class()
+    if not template_name:
+        template_name = "%s/%s_form.html" % (model._meta.app_label, model._meta.object_name.lower())
+    return render_to_response(template_name, {'form': form}, RequestContext(request))
