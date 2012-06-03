@@ -13,6 +13,8 @@ class Project(models.Model):
     owner = models.ForeignKey(User, verbose_name='Usuario')
     title = models.CharField(max_length=255, verbose_name='Nombre')
     is_closed=models.BooleanField(blank=True, default=0, verbose_name='Cerrado')
+    def to_json(self):
+        return '{"title":"'+self.title+'"}'
     def __unicode__(self):
         return self.title
 

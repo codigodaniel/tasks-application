@@ -1,5 +1,20 @@
 {%extends 'base.html'%}
 {%block title%} {%if current_project %} {{current_project}} {% else %} Home {% endif %} {%endblock%}
+{%block extra_head%}
+<link rel="stylesheet" type="text/css" href="{%url static 'js/jquery.autocomplete.css'%}" />
+<script src="{%url static 'js/jquery.autocomplete.min.js'%}" ></script>
+<script>
+    var WWW_ROOT=''
+    function format(item) {
+        return item;
+    }
+    $(document).ready(function(){
+        $("#id_project_title").val('{{current_project}}');
+        $("#id_project_title").autocomplete(WWW_ROOT+'/tasks/project/json/');
+    });
+</script>
+
+{%endblock%}
 {%block content%}
 <script>
     window.onload=function(){document.getElementById('id_title').focus();}

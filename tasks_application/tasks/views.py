@@ -248,3 +248,13 @@ def task_create(request,
     if not template_name:
         template_name = "%s/%s_form.html" % (model._meta.app_label, model._meta.object_name.lower())
     return render_to_response(template_name, {'form': form}, RequestContext(request))
+
+def project_json(request):
+    r={}
+    if request.method == 'GET':
+        q=request.GET.get('q')
+        #~ from django.core import serializers
+        #~ data = serializers.serialize("json", )
+        r['object_list']=Project.objects.filter(owner=request.user).filter(title__contains=q)
+        pass
+    return render_to_response('tasks/project_json.html', r, RequestContext(request))

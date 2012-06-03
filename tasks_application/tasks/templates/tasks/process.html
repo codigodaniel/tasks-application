@@ -1,10 +1,24 @@
 {%extends 'base.html'%}
 {%block title%} {{inbox_first}} {%endblock%}
+{%block extra_head%}
+<link rel="stylesheet" type="text/css" href="{%url static 'js/jquery.autocomplete.css'%}" />
+<script src="{%url static 'js/jquery.autocomplete.min.js'%}" ></script>
+<script>
+    var WWW_ROOT=''
+    function format(item) {
+        return item;
+    }
+    $(document).ready(function(){
+        $("#id_project_title").val('{{inbox_first.project}}');
+        $("#id_project_title").autocomplete(WWW_ROOT+'/tasks/project/json/');
+    });
+</script>
+{%endblock%}
 {%block content%}
+{{object}}
 <h3>Esta Tarea ¿Requiere acción?</h3>
 <b>Sí:</b> Entonces debes clasificarla, y elegir tamaño. <br>
 <b>No:</b> Entonces debes archivarla.
-
                     <table >
                         <tr><td> 
                         {% if inbox_first %}
@@ -26,5 +40,4 @@
                         {% endif %}
                         </td></tr>
                     </table>                
-
 {%endblock%}

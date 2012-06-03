@@ -1,0 +1,20 @@
+1) Base Dependencies
+- Python 2.7+
+- pip
+
+2) pip install -r requirements.txt
+
+3) create file "local_settings.py" taking as model "local_settings_template.py" 
+
+4) create database and superuser
+python manage.py syncdb
+
+5) apply migrations
+python manage.py migrate
+
+6) start server
+python manage.py runserver
+
+
+
+

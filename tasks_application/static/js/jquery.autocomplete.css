@@ -46,3 +46,11 @@
 	background-color: #0A246A;
 	color: white;
 }
+
+.ac_results strong {
+    color:black;
+}
+
+li.ac_over strong {
+    color:white;
+}

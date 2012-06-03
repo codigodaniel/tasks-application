@@ -7,7 +7,7 @@ from django.forms.fields import ChoiceField, CharField
 
 from django.forms import Textarea
 
-project_title_field = CharField(widget=TextInput, label='Proyecto')
+project_title_field = CharField(widget=TextInput, label='Proyecto', required=True)
 
 class InboxForm(ModelForm):
     project_title=project_title_field
