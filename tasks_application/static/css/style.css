@@ -16,11 +16,14 @@ div.task a.delete{background:#EE2310;}
 div.task a.edit{background:#16D982;}
 div.task a.delay{background:#659FC6;}
 div.task a.duplicate{background:blue;}
+div.task a.highlight{background:F57D1B;}
 
 div.task a.archive:hover{background:#fff;}
 div.task a.delete:hover{background:#fff;}
 div.task a.edit:hover{background:#fff;}
 div.task a.delay:hover{background:#fff;}
+div.task a.duplicate:hover{background:#fff;}
+div.task a.highlight:hover{background:#fff;}
 
 p.inbox{border:2px solid #F5A767;background:#F57D1B;padding:5px;}
 p.inbox a{color:white;font-weight:700;}

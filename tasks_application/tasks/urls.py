@@ -14,10 +14,10 @@ urlpatterns = patterns('tasks.views',
     (r'^task/(?P<object_id>\d+)/block/$','task_block',{},'tasks_task_block'),
     (r'^task/(?P<object_id>\d+)/archive/$','task_archive',{},'tasks_task_archive'),
     (r'^task/(?P<object_id>\d+)/delay/$','task_delay',{},'tasks_task_delay'),
+    (r'^task/(?P<object_id>\d+)/duplicate/$','task_duplicate',{},'tasks_task_duplicate'),
+    (r'^task/(?P<object_id>\d+)/highlight/$','task_highlight',{},'tasks_task_highlight'),
 
     (r'^process/update/(?P<object_id>\d+)/$','update_task',{'form_class':TaskForm,'post_save_redirect':settings.HOME_URL+'tasks/process/'},'tasks_process_update'),
-   
-    (r'^task/(?P<object_id>\d+)/duplicate/$','task_duplicate',{},'tasks_task_duplicate'),
 
     (r'^process/$','process',{},'tasks_process'),
     (r'^archive/$','task_archived',{},'tasks_archived'),
