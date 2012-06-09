@@ -4,13 +4,22 @@
 <link rel="stylesheet" type="text/css" href="{%url static 'js/jquery.autocomplete.css'%}" />
 <script src="{%url static 'js/jquery.autocomplete.min.js'%}" ></script>
 <script>
-    var WWW_ROOT=''
     function format(item) {
         return item;
     }
     $(document).ready(function(){
         $("#id_project_title").val('{{current_project}}');
         $("#id_project_title").autocomplete(WWW_ROOT+'/tasks/project/json/');
+        $("#id_task_search").autocomplete(WWW_ROOT+'/tasks/task/json/').result(function(event, item) {  
+            location.href = item[1];
+        });
+        /* *
+        ,{
+              formatItem: function(item) {
+                return item.text;
+              }
+            })
+            /**/
     });
 </script>
 
@@ -20,6 +29,10 @@
     window.onload=function(){document.getElementById('id_title').focus();}
 </script>
                     <table >
+                        <tr><td>
+                            <h3>Buscar una Tarea...</h3>
+                            <input type="text" value="" id="id_task_search">
+                        </td></tr>
                         <tr><td>
                             
                         <h3>Ingresa una Tarea al Inbox:</h3>

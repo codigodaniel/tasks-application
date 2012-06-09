@@ -261,3 +261,16 @@ def project_json(request):
         r['object_list']=Project.objects.filter(owner=request.user).filter(title__contains=q)
         pass
     return render_to_response('tasks/project_json.html', r, RequestContext(request))
+
+def task_json(request):
+    r={}
+    if request.method == 'GET':
+        q=request.GET.get('q')
+        project_list=Project.objects.filter(owner=request.user)
+        pre_list=Task.objects.filter(project__in=project_list)
+        pre_list=pre_list.filter(title__contains=q)
+        #~ r['object_list']=Task.objects.filter(title__contains=q)
+        r['object_list']=pre_list
+        # filtrar por detail
+        pass
+    return render_to_response('tasks/task_json.html', r, RequestContext(request))

@@ -4,7 +4,6 @@
 <link rel="stylesheet" type="text/css" href="{%url static 'js/jquery.autocomplete.css'%}" />
 <script src="{%url static 'js/jquery.autocomplete.min.js'%}" ></script>
 <script>
-    var WWW_ROOT=''
     function format(item) {
         return item;
     }
@@ -12,36 +11,6 @@
         console.log('{{object.project}}');
         $("#id_project_title").val('{{object.project}}');
         $("#id_project_title").autocomplete(WWW_ROOT+'/tasks/project/json/');
-        
-        /* *
-        , {
-            formatItem: function(item) {
-                console.log('format');
-                return format(item);
-            }
-        }
-        */
-            //multiple: false,
-            //dataType: "json",
-            /* *
-            parse: function(data) {
-                console.log('parse');
-                console.log(data);
-                return $.map(data, function(row){
-                    return {
-                        data: row,
-                        value: row.title,
-                        result: row.title
-                    }
-            },
-        });
-            /* */
-        /* *
-        .result(function(e, item){
-            console.log('result');
-           console.log(item);
-        });
-        /* */
     });
 </script>
 

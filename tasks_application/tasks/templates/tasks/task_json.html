@@ -1,0 +1,2 @@
+{%for obj in object_list%}{{obj.title|safe}}|{{obj.absolute_url}}
+{%endfor%}{%comment%}{%if not forloop.first%},{%endif%}{%endcomment%}

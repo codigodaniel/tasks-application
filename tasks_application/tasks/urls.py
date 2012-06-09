@@ -27,6 +27,7 @@ urlpatterns = patterns('tasks.views',
     (r'^archive/$','task_archived',{},'tasks_archived'),
     
     (r'^project/json/','project_json',{},'tasks_project_json'),
+    (r'^task/json/','task_json',{},'tasks_task_json'),
 )
 
 urlpatterns += patterns('django.views.generic',
