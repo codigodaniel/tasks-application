@@ -48,13 +48,15 @@
                     {%include 'filtros.html'%}
                     <h3>Carpetas</h3>
                     {%for object in project_list%}
-                        <a href="{%url tasks_project_set object.id %}">
-                        {%if object == current_project %} 
-                            <strong>{{object.title}}</strong> 
-                        {%else%} 
-                            {{object.title}} 
+                        {%if not object.is_closed%}
+                            <a href="{%url tasks_project_set object.id %}">
+                            {%if object == current_project %} 
+                                <strong>{{object.title}}</strong> 
+                            {%else%} 
+                                {{object.title}} 
+                            {%endif%}
+                            </a><br>
                         {%endif%}
-                        </a><br>
                     {%endfor%}
                     {%if current_project%}
                         <a href="{%url tasks_project_set 0%}"><h3>Desactivar Proyecto Actual</h3></a>

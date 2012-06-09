@@ -1,5 +1,6 @@
 
-<div>
+<div class="project {%if object.is_closed %}closed{%else%}{%endif%}">
     <a title="Editar" href="{%url tasks_project_edit object.id%}">{{ object.title }}</a><br>
+    <a class="button close" title="{%if object.is_closed%}Abrir{%else%}Cerrar{%endif%}" href="{%url tasks_project_close object.id%}"></a>
     <a class="button delete" title="Borrar definitivamente" href="{%url tasks_project_delete object.id%}"></a>
 </div>

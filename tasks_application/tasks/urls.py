@@ -10,6 +10,7 @@ urlpatterns = patterns('tasks.views',
     (r'^project/open/(?P<object_id>\d+)/$','project_set',{},'tasks_project_set'),
     (r'^project/$','project_general',{},'tasks_project_general'),
     (r'^project/new/$','create_user_owned_object',{'model':Project,'form_class':ProjectForm,'post_save_redirect':settings.HOME_URL},'tasks_project_new'),
+    (r'^project/(?P<object_id>\d+)/close/$','project_close',{},'tasks_project_close'),
     
     (r'^task/(?P<object_id>\d+)/edit/$','update_task',{'form_class':TaskForm,'post_save_redirect':settings.HOME_URL},'tasks_task_edit'),
     (r'^task/(?P<object_id>\d+)/block/$','task_block',{},'tasks_task_block'),
