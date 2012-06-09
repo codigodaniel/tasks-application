@@ -57,6 +57,9 @@ def task_archive(request, object_id):
     try:
         obj=Task.objects.get(pk=object_id)
         obj.is_archived=True
+        obj.is_delayed=False
+        obj.is_highlighted=False
+        obj.is_blocked=False
         obj.save()
     except:
         pass
