@@ -1,6 +1,10 @@
 
 <div class="task {%if object.is_highlighted %}highlighted{%else%}{%endif%}">
-    <a title="Editar" href="{%url tasks_task_edit object.id%}">{{ object.title }}</a>{%if object.detail %} (+) {% endif %}<br>
+{%if not current_project%}
+<b>Carpeta: {{ object.project }}</b>
+{%endif%}
+
+    <a title="Editar" href="{%url tasks_task_edit object.id%}">Tarea: {{ object.title }}</a>{%if object.detail %} (+) {% endif %}<br>
     <a class="button delete" title="Borrar definitivamente" href="{%url tasks_task_delete object.id%}"></a>
     <a class="button block" title="{%if object.is_blocked%}Desbloquear{%else%}Bloquear{%endif%}" href="{%url tasks_task_block object.id%}"></a>
     <a class="button archive" title="{%if object.is_archived%}Desarchivar{%else%}Archivar{%endif%}" href="{%url tasks_task_archive object.id%}"></a>

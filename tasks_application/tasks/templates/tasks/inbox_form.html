@@ -1,0 +1,18 @@
+<div id="inbox_form">
+<script>
+    $(document).ready(function(){
+        project_selector_id='id_project_title_inbox';
+        console.log('armo inbox');
+        {%if current_project%}$("#"+project_selector_id).val('{{current_project}}');{%endif%}
+        {%include 'project_selector_js.html'%}
+        console.log('arme el inbox');
+    });
+</script>
+
+      <h3>Ingresa una Tarea al Inbox:</h3>
+    <form method="post" action="{%url tasks_inbox_insert%}">
+    {{inbox_form.as_p}}
+            <p><input type="submit"> </p>
+    </form>
+
+</div>

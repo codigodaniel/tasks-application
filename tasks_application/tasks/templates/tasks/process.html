@@ -6,14 +6,13 @@
         return item;
     }
     $(document).ready(function(){
-        $("#id_project_title").val('{{inbox_first.project}}');
+        project_selector_id='id_project_title';
+        $("#"+project_selector_id).val('{{inbox_first.project}}');
         {%include 'project_selector_js.html'%}
     });
 </script>
-
 {%endblock%}
 {%block content%}
-{{object}}
 <h3>Esta Tarea ¿Requiere acción?</h3>
 <b>Sí:</b> Entonces debes clasificarla, y elegir tamaño. <br>
 <b>No:</b> Entonces debes archivarla.

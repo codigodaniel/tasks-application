@@ -1,5 +1,6 @@
 from models import Task
 from models import Project
+from forms import InboxForm
 
 def tasks_dicts(request):
     r={}
@@ -20,14 +21,22 @@ def tasks_dicts(request):
     r['pending_list'].append({'label':'+ de 2 horas','list':active_tasks.filter(size=3)})
     r['pending_list'].append({'label':'?','list':active_tasks.filter(size=4)})
     
-    for qs in r['pending_list']:
-        qs['list']=qs['list'].filter(project=r['current_project'])
-    bloqued_tasks=bloqued_tasks.filter(project=r['current_project'])
-    delayed_tasks=delayed_tasks.filter(project=r['current_project'])
+    if r['current_project']:
+        for qs in r['pending_list']:
+            qs['list']=qs['list'].filter(project=r['current_project'])
+        bloqued_tasks=bloqued_tasks.filter(project=r['current_project'])
+        delayed_tasks=delayed_tasks.filter(project=r['current_project'])
+    else:
+        for qs in r['pending_list']:
+            qs['list']=qs['list'].filter(project__in=r['project_list'])
+        bloqued_tasks=bloqued_tasks.filter(project__in=r['project_list'])
+        delayed_tasks=delayed_tasks.filter(project__in=r['project_list'])
 
     r['inbox_list']=active_tasks.filter(size=0)
     r['bloqued_tasks']=bloqued_tasks
     r['delayed_tasks']=delayed_tasks
+    
+    r['inbox_form']=InboxForm()
     
     return r
     

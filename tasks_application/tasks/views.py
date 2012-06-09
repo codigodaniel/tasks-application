@@ -4,7 +4,7 @@ from django.template import RequestContext
 from models import Task
 from models import Project
 from models import get_or_create_by_title
-from forms import InboxForm
+
 from forms import TaskForm
 from forms import ProjectForm
 from django.core.urlresolvers import reverse
@@ -18,7 +18,6 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     r={}
-    r['form']=InboxForm()
     return render_to_response('tasks/home.html', r, RequestContext(request))
 
 def project_set(request, object_id):
@@ -116,7 +115,7 @@ def project_close(request, object_id):
 def project_general(request):
     r={}
     r['form']=ProjectForm()
-    r['project_list']=Project.objects.all()
+    r['project_list']=Project.objects.filter(owner=request.user)
     return render_to_response('tasks/project_general.html', r, RequestContext(request))
 
 def create_user_owned_object(request, 
@@ -255,7 +254,7 @@ def task_create(request,
 
     model, form_class = get_model_and_form_class(model, form_class)
     if request.method == 'POST':
-        p=get_or_create_by_title(request.user,request.POST.get('project_title'))
+        p=get_or_create_by_title(request.user,request.POST.get('project_title_inbox'))
         form = form_class(request.POST, request.FILES)
         #~ del form.fields['project']
         if form.is_valid():

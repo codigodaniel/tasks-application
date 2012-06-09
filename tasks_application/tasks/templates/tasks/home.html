@@ -6,42 +6,39 @@
         $("#id_task_search").autocomplete(WWW_ROOT+'/tasks/task/json/').result(function(event, item) {  
             location.href = item[1];
         });
-        {%if current_project%}$("#id_project_title").val('{{current_project}}');{%endif%}
-        {%include 'project_selector_js.html'%}
+        $("#id_project_filter").autocomplete(WWW_ROOT+'/tasks/project/json/',{
+                    dataType:'json',
+                    parse: function(data) {
+                        return $.map(data, function(row) {
+                            return {
+                                data: row,
+                                value: row.id,
+                                result: row.title
+                            }
+                        });
+                    },                
+                    formatItem: function(item) {
+                        return item.title;
+                    }
+                }).result(function(e, item){
+                        location.href=WWW_ROOT+'/tasks/project/open/'+item.id;
+            });        
     });
 </script>
-
 
 {%endblock%}
 {%block content%}
 <script>
     window.onload=function(){document.getElementById('id_title').focus();}
 </script>
-                    <table >
-                        <tr><td>
-                            <h3>Buscar una Tarea...</h3>
-                            <input type="text" value="" id="id_task_search">
-                        </td></tr>
-                        <tr><td>
-                            
-                        <h3>Ingresa una Tarea al Inbox:</h3>
-                        <form method="post" action="{%url tasks_inbox_insert%}">
-                        <table>
-                        {{form}}
-                            <tr>
-                                <td> </td>
-                                <td><input type="submit"> </td>
-                            </tr>
-                        </table>
-                        </form>
-                        
-                        </td></tr>
-                        <tr><td> 
-                        {%if current_project%}
-                        {%else%}
-                            <h1><b>Todos los proyectos:</b></h1>
-                        {%endif%}
-                        <h3>Tareas listas para ejecutar:</h3>
+<div id="search_form">
+<b>Buscar una Tarea:</b>
+<input class="search" type="text" value="" id="id_task_search" >
+</div>
+<div id="filter_form">
+                    <table >          
+                        <tr><td > 
+                        {%include 'filtros.html'%}
                         </td></tr>
                         {%for list in pending_list%}
                             <tr><td> 
@@ -78,4 +75,6 @@
                         
                         
                     </table>     
+</div>
+                    
 {%endblock%}

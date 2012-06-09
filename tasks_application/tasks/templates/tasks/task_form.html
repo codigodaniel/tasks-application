@@ -3,7 +3,8 @@
 {%block extra_head%}
 <script>
     $(document).ready(function(){
-        $("#id_project_title").val('{{object.project}}');
+        project_selector_id='id_project_title';
+        $("#"+project_selector_id).val('{{object.project}}');
         {%include 'project_selector_js.html'%}
     });
 </script>
@@ -13,14 +14,12 @@
 <h3>Tarea</h3>
                     <table >
                         <tr><td> 
-                            <form method="post" action="{%url tasks_task_edit object.id%}">
+                            <form method="post" action="">
                             <table>
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <a title="Borrar definitivamente" href="{%url tasks_task_delete object.id%}">Eliminar</a>
-                                        <input type="submit" value="Save">   
-                                        <input type="submit" value="Save and continue editing" name="_continue">
+{%include 'tasks/task_actions.html'%}
                                         
                                     </td>
                                 </tr>
@@ -28,10 +27,7 @@
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <a title="Borrar definitivamente" href="{%url tasks_task_delete object.id%}">Eliminar</a>
-                                        <input type="submit" value="Save">  
-                                        <input type="submit" value="Save and continue editing" name="_continue">
-                                        
+{%include 'tasks/task_actions.html'%}
                                     </td>
                                 </tr>
                             </table>

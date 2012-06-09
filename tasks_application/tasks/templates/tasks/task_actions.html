@@ -1,0 +1,5 @@
+{%if object.id%}
+<a title="Borrar definitivamente" href="{%url tasks_task_delete object.id%}">Eliminar</a>
+{%endif %}
+<input type="submit" value="Save">  
+<input type="submit" value="Save and continue editing" name="_continue">

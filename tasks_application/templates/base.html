@@ -7,26 +7,7 @@
         <script src="{%url static 'js/jquery.autocomplete.min.js'%}" ></script>
         <script>
             var WWW_ROOT='';
-            $(document).ready(function(){
-                
-                $("#id_project_filter").autocomplete(WWW_ROOT+'/tasks/project/json/',{
-                    dataType:'json',
-                    parse: function(data) {
-                        return $.map(data, function(row) {
-                            return {
-                                data: row,
-                                value: row.id,
-                                result: row.title
-                            }
-                        });
-                    },                
-                    formatItem: function(item) {
-                        return item.title;
-                    }
-                }).result(function(e, item){
-                        location.href=WWW_ROOT+'/tasks/project/open/'+item.id;
-                    });
-            });
+            var project_selector_id='';
         </script>
         {%block extra_head%}{%endblock%}
     </head>
@@ -45,29 +26,15 @@
                         <a href="{%url tasks_process%}">Procesar Inbox</a><br> 
                     {%endif%}
                     </p>
-                    {%include 'filtros.html'%}
-                    <h3>Carpetas</h3>
-                    {%for object in project_list%}
-                        {%if not object.is_closed%}
-                            <a href="{%url tasks_project_set object.id %}">
-                            {%if object == current_project %} 
-                                <strong>{{object.title}}</strong> 
-                            {%else%} 
-                                {{object.title}} 
-                            {%endif%}
-                            </a><br>
-                        {%endif%}
-                    {%endfor%}
-                    {%if current_project%}
-                        <a href="{%url tasks_project_set 0%}"><h3>Desactivar Proyecto Actual</h3></a>
-                    {%endif%}
+                    {%include 'tasks/inbox_form.html'%}
+                    
                     <a href="{%url tasks_archived%}"><h3>Archivo</h3></a><br>
                 {%else%}    
                     <a href="{%url accounts_login%}">Entrar</a>
                     <br>
                 {%endif%}
                 </td>
-                <td>
+                <td valign="top">
                 {%if user.is_authenticated%}
                     {%block content%}{%endblock%}     
                 {%endif%}    

@@ -1,11 +1,38 @@
+<div id="filters">
 
-<hr>
-<h2>Filtros</h2>
+{%comment%}
 <table>
     <tr>
         <td colspan="2">
-            <label for="id_project_filter">Carpeta</label><br>
-            <input type="text" id="id_project_filter" value="{{current_project}}">
+{%endcomment%}
+<table>
+    <tr>
+        <td>
+        </td>
+        <td>
+<b>Filtros:</b>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="id_project_filter">Carpeta</label>
+        </td>
+        <td>
+            <input onfocus="this.select();" type="text" id="id_project_filter" value="{%if current_project%}{{current_project}}{%endif%}">
+        </td>
+        <td>
+{%if current_project%}
+<a href="{%url tasks_project_set 0%}">Desactivar</a>
+{%else%}
+<b>Todas las carpetas.</b>
+{%endif%}
+        </td>
+    </tr>
+</table>
+        
+{%comment%}
         </td>
     </tr>
     <tr>
@@ -49,3 +76,5 @@
         </td>
     </tr>
 </table>
+{%endcomment%}
+</div>
