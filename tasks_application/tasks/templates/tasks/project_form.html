@@ -4,12 +4,13 @@
 <h3>Proyecto</h3>
                     <table >
                         <tr><td> 
-                            <form method="post" action="{%url tasks_project_new %}">
+                            <form method="post" action="">
                             <table>
                                {{form}}
                                 <tr>
-                                    <td> </td>
-                                    <td><input type="submit"> </td>
+                                    <td></td>
+                                    <a title="Borrar definitivamente" href="{%url tasks_project_delete object.id%}">Eliminar</a>
+                                    <td><input type="submit" value="Save">  </td>
                                 </tr>
                             </table>
                             </form>

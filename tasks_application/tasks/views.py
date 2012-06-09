@@ -6,6 +6,7 @@ from models import Project
 from models import get_or_create_by_title
 from forms import InboxForm
 from forms import TaskForm
+from forms import ProjectForm
 from django.core.urlresolvers import reverse
 
 from django.views.generic.create_update import get_model_and_form_class, lookup_object
@@ -94,6 +95,12 @@ def task_duplicate(request, object_id):
     except:
         pass
     return HttpResponseRedirect(reverse('tasks_home'))
+
+def project_general(request):
+    r={}
+    r['form']=ProjectForm()
+    r['project_list']=Project.objects.all()
+    return render_to_response('tasks/project_general.html', r, RequestContext(request))
 
 def create_user_owned_object(request, 
     model=None, 
