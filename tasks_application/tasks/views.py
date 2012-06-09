@@ -98,6 +98,18 @@ def task_duplicate(request, object_id):
     except:
         pass
     return HttpResponseRedirect(reverse('tasks_home'))
+    
+def project_close(request, object_id):
+    try:
+        obj=Project.objects.get(pk=object_id)
+        if obj.is_closed:
+            obj.is_closed=False
+        else:
+            obj.is_closed=True 
+        obj.save()
+    except:
+        pass
+    return HttpResponseRedirect(reverse('tasks_project_general'))
 
 def project_general(request):
     r={}
