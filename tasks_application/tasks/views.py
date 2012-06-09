@@ -107,6 +107,8 @@ def project_close(request, object_id):
         else:
             obj.is_closed=True 
         obj.save()
+        if obj == request.session.get('current_project'):
+            return project_set(request, object_id=0)
     except:
         pass
     return HttpResponseRedirect(reverse('tasks_project_general'))
