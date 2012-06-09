@@ -278,7 +278,7 @@ def project_json(request):
         q=request.GET.get('q')
         #~ from django.core import serializers
         #~ data = serializers.serialize("json", )
-        r['object_list']=Project.objects.filter(owner=request.user).filter(title__contains=q)
+        r['object_list']=Project.objects.filter(owner=request.user).filter(is_closed=False).filter(title__contains=q)
         pass
     return render_to_response('tasks/project_json.html', r, RequestContext(request))
 

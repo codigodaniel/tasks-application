@@ -1,2 +1,2 @@
-{%for obj in object_list%}{{obj.title|safe}}{%if obj.detail %} (+) {% endif %}|{{obj.absolute_url}}
+{%for obj in object_list%}{{obj.project|safe}}: {{obj.title|safe}}{%if obj.detail %} (+) {% endif %}|{{obj.absolute_url}}
 {%endfor%}{%comment%}{%if not forloop.first%},{%endif%}{%endcomment%}

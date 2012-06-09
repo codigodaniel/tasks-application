@@ -5,7 +5,7 @@ from forms import InboxForm
 def tasks_dicts(request):
     r={}
     if request.user.is_authenticated():
-        r['project_list']=Project.objects.filter(owner=request.user)
+        r['project_list']=Project.objects.filter(owner=request.user).filter(is_closed=False)
     else:
         r['project_list']=[]
 
