@@ -1,27 +1,16 @@
 {%extends 'base.html'%}
 {%block title%} {%if current_project %} {{current_project}} {% else %} Home {% endif %} {%endblock%}
 {%block extra_head%}
-<link rel="stylesheet" type="text/css" href="{%url static 'js/jquery.autocomplete.css'%}" />
-<script src="{%url static 'js/jquery.autocomplete.min.js'%}" ></script>
 <script>
-    function format(item) {
-        return item;
-    }
     $(document).ready(function(){
-        $("#id_project_title").val('{{current_project}}');
-        $("#id_project_title").autocomplete(WWW_ROOT+'/tasks/project/json/');
         $("#id_task_search").autocomplete(WWW_ROOT+'/tasks/task/json/').result(function(event, item) {  
             location.href = item[1];
         });
-        /* *
-        ,{
-              formatItem: function(item) {
-                return item.text;
-              }
-            })
-            /**/
+        {%if current_project%}$("#id_project_title").val('{{current_project}}');{%endif%}
+        {%include 'project_selector_js.html'%}
     });
 </script>
+
 
 {%endblock%}
 {%block content%}

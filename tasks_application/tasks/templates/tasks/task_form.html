@@ -1,16 +1,10 @@
 {%extends 'base.html'%}
 {%block title%} {{object}} {%endblock%}
 {%block extra_head%}
-<link rel="stylesheet" type="text/css" href="{%url static 'js/jquery.autocomplete.css'%}" />
-<script src="{%url static 'js/jquery.autocomplete.min.js'%}" ></script>
 <script>
-    function format(item) {
-        return item;
-    }
     $(document).ready(function(){
-        console.log('{{object.project}}');
         $("#id_project_title").val('{{object.project}}');
-        $("#id_project_title").autocomplete(WWW_ROOT+'/tasks/project/json/');
+        {%include 'project_selector_js.html'%}
     });
 </script>
 

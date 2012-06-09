@@ -1,0 +1,16 @@
+        $("#id_project_title").autocomplete(WWW_ROOT+'/tasks/project/json/',{
+                    dataType:'json',
+                    parse: function(data) {
+                        return $.map(data, function(row) {
+                            return {
+                                data: row,
+                                value: row.id,
+                                result: row.title
+                            }
+                        });
+                    },                
+                    formatItem: function(item) {
+                        return item.title;
+                    }
+                }).result(function(e, item){
+        });

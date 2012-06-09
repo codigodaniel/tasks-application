@@ -3,8 +3,30 @@
         <title>{%block title%}{%endblock%}</title>  
         <link rel="stylesheet" type="text/css" href="{%url static 'css/style.css'%}" />
         <script src="{%url static 'js/jquery.js'%}" ></script>
+        <link rel="stylesheet" type="text/css" href="{%url static 'js/jquery.autocomplete.css'%}" />
+        <script src="{%url static 'js/jquery.autocomplete.min.js'%}" ></script>
         <script>
-            var WWW_ROOT=''
+            var WWW_ROOT='';
+            $(document).ready(function(){
+                
+                $("#id_project_filter").autocomplete(WWW_ROOT+'/tasks/project/json/',{
+                    dataType:'json',
+                    parse: function(data) {
+                        return $.map(data, function(row) {
+                            return {
+                                data: row,
+                                value: row.id,
+                                result: row.title
+                            }
+                        });
+                    },                
+                    formatItem: function(item) {
+                        return item.title;
+                    }
+                }).result(function(e, item){
+                        location.href=WWW_ROOT+'/tasks/project/open/'+item.id;
+                    });
+            });
         </script>
         {%block extra_head%}{%endblock%}
     </head>
@@ -23,7 +45,8 @@
                         <a href="{%url tasks_process%}">Procesar Inbox</a><br> 
                     {%endif%}
                     </p>
-                    <h3>Proyectos</h3>
+                    {%include 'filtros.html'%}
+                    <h3>Carpetas</h3>
                     {%for object in project_list%}
                         <a href="{%url tasks_project_set object.id %}">
                         {%if object == current_project %} 

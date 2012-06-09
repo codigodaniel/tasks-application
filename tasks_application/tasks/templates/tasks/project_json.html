@@ -1,2 +1,2 @@
-{%for obj in object_list%}{{obj.title|safe}}|{{obj.title|safe}}
-{%endfor%}{%comment%}{%if not forloop.first%},{%endif%}{%endcomment%}
+[{%for obj in object_list%}{%if not forloop.first%},{%endif%}{ "title":"{{obj.title|safe}}","id":"{{obj.id}}"}{%endfor%}]
+{%comment%}{%endcomment%}
