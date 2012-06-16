@@ -22,6 +22,7 @@ div.task a.archive{background:url(file-manager.gif) no-repeat;}
 div.task a.delete{background:url(fileclose-2.gif) no-repeat;}
 div.task a.block{background:url(fileclose-3.gif) no-repeat;}
 div.task a.delay{background:url(history_clear.gif) no-repeat;}
+div.task a.detail{background:url(gnome-graphics.gif) no-repeat;}
 div.task a.duplicate{background:url(gnome-netstatus-txrx.gif) no-repeat;}
 div.task a.highlight{background:url(emblem-bookmarks-closed.gif) no-repeat;}
 div.project a.delete{background:url(fileclose-2.gif) no-repeat;}

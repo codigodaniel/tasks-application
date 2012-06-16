@@ -18,7 +18,7 @@ urlpatterns = patterns('tasks.views',
     (r'^task/(?P<object_id>\d+)/delay/$','task_delay',{},'tasks_task_delay'),
     (r'^task/(?P<object_id>\d+)/duplicate/$','task_duplicate',{},'tasks_task_duplicate'),
     (r'^task/(?P<object_id>\d+)/highlight/$','task_highlight',{},'tasks_task_highlight'),
-    (r'^task/(?P<object_id>\d+)/duplicate/$','task_duplicate',{},'tasks_task_duplicate'),
+    (r'^task/(?P<object_id>\d+)/detail/$','task_detail',{},'tasks_task_detail'),
 
     (r'^process/update/(?P<object_id>\d+)/$','update_task',{'form_class':TaskForm,'post_save_redirect':settings.HOME_URL+'tasks/process/'},'tasks_process_update'),
    

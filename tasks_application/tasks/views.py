@@ -98,6 +98,14 @@ def task_duplicate(request, object_id):
         pass
     return HttpResponseRedirect(reverse('tasks_home'))
     
+def task_detail(request, object_id):
+    try:
+        r={}
+        r['object']=Task.objects.get(pk=object_id)
+    except:
+        pass
+    return render_to_response('tasks/task_detail.html', r, RequestContext(request))
+    
 def project_close(request, object_id):
     try:
         obj=Project.objects.get(pk=object_id)

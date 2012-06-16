@@ -1,7 +1,7 @@
 
 <div class="task {%if object.is_highlighted %}highlighted{%else%}{%endif%}">
 {%if object.detail%}
-<img src="{%url static 'css/gnome-graphics.gif'%}" />
+<a class="button detail" title="Detail" href="{%url tasks_task_detail object.id%}"></a>
 {%else%}
 <img src="{%url static 'css/gnome-directory.gif'%}" />
 {%endif%}
