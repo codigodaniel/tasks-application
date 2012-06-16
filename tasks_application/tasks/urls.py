@@ -41,4 +41,3 @@ urlpatterns += patterns('django.views.generic',
     (r'^task/(?P<object_id>\d+)/delete/$','create_update.delete_object',{'model':Task,'post_delete_redirect':settings.HOME_URL},'tasks_task_delete'),
     #~ (r'^inbox/insert/$','create_update.create_object',{'form_class':InboxForm,'post_save_redirect':settings.HOME_URL},'tasks_inbox_insert'),
 )
-
