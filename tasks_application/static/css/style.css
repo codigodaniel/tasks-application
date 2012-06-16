@@ -51,3 +51,5 @@ width:300px;
 div#inbox_form{border:2px solid  #bbb;background:#B3E3AF;padding:8px;margin:8px;border-radius:10px;}
 div#search_form{border:2px solid  #bbb;background:#BAAFE3;padding:8px;margin:8px;border-radius:10px;}
 div#filter_form{border:2px solid  #bbb;background:#E2E3AF;padding:8px;margin:8px;border-radius:10px;}
+div#task_archived{border:2px solid  #bbb;background:#E2E3AF;padding:8px;margin:8px;border-radius:10px;}
+div#project_all{border:2px solid  #bbb;background:#E2E3AF;padding:8px;margin:8px;border-radius:10px;}

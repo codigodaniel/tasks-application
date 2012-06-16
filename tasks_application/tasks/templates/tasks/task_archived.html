@@ -4,17 +4,19 @@
         <script>
             window.onload=function(){document.getElementById('id_title').focus();}
         </script>
-        <table>
-            <tr><td>
-                <h2>Tareas archivas:</h2>
-                    {%if archived_tasks%}
-                        {%for object in archived_tasks%}
-                            {%include 'tasks/task_float.html'%}
-                        {%endfor%}
-                    {%else%}
-                    <p>No tasks are available.</p>
-                {%endif%}
-            </td></tr>
-        </table>
+        <div id="task_archived">
+            <table>
+                <tr><td>
+                    <h2>Tareas archivas:</h2>
+                        {%if archived_tasks%}
+                            {%for object in archived_tasks%}
+                                {%include 'tasks/task_float.html'%}
+                            {%endfor%}
+                        {%else%}
+                        <p>No tasks are available.</p>
+                    {%endif%}
+                </td></tr>
+            </table>
+        </div>
     {%endblock%}
     
