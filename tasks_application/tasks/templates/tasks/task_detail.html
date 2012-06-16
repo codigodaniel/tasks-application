@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+{%block title%} Detalles de: {{object}} {%endblock%}
+{%block content%}
+<h3>Tarea</h3>
+    <table >
+        <tr><td> 
+        <strong>{{object}}</strong><br>
+        {{object.detail|linebreaks}}
+        <a href="{%url tasks_task_delete object.id%}">Borrar</a>
+        </td></tr>
+    </table>                
+{%endblock%}

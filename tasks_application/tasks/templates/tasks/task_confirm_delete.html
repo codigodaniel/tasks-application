@@ -5,7 +5,7 @@
                     <table >
                         <tr><td> 
                         <strong>{{object}}</strong><br>
-                        {{object.detail}}
+                        {{object.detail|linebreaks}}
                             <form method="post" action="{%url tasks_task_delete object.id%}">
                             <table>
                                 <tr>

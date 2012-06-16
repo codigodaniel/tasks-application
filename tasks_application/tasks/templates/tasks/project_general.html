@@ -4,29 +4,31 @@
         <script>
             window.onload=function(){document.getElementById('id_title').focus();}
         </script>
-        <table>
-            <tr><td>
-            <h3>Ingrese una Carpeta Nueva:</h3>
-                <form method="post" action="{%url tasks_project_new%}">
-                    <table>
-                        {{form}}
-                        <tr>
-                            <td></td>
-                            <td><input type="submit"></td>
-                        </tr>
-                    </table>
-                </form>
-            </td></tr>
+        <div id="project_all">
+            <table>
                 <tr><td>
-                    <h2>Carpetas Creados:</h2>
-                        {%if project_list%}
-                            {%for object in project_list%}
-                                {%include 'tasks/project_float.html'%}
-                            {%endfor%}
-                        {%else%}
-                        <p>No projects are available.</p>
-                    {%endif%}
+                <h3>Ingrese una Carpeta Nueva:</h3>
+                    <form method="post" action="{%url tasks_project_new%}">
+                        <table>
+                            {{form}}
+                            <tr>
+                                <td></td>
+                                <td><input type="submit"></td>
+                            </tr>
+                        </table>
+                    </form>
                 </td></tr>
-        </table>
+                    <tr><td>
+                        <h2>Carpetas Creados:</h2>
+                            {%if project_list%}
+                                {%for object in project_list%}
+                                    {%include 'tasks/project_float.html'%}
+                                {%endfor%}
+                            {%else%}
+                            <p>No projects are available.</p>
+                        {%endif%}
+                    </td></tr>
+            </table>
+        </div>
     {%endblock%}
     

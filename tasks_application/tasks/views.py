@@ -16,13 +16,18 @@ from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
 
+from datetime import datetime
+
 def index(request):
     r={}
     return render_to_response('tasks/home.html', r, RequestContext(request))
 
 def project_set(request, object_id):
     try:
-        request.session['current_project']=Project.objects.get(pk=object_id)
+        obj=Project.objects.get(pk=object_id)
+        obj.last_access=datetime.now()
+        request.session['current_project']=obj
+        obj.save()
     except:
         request.session['current_project']=None
         pass
@@ -98,6 +103,14 @@ def task_duplicate(request, object_id):
         pass
     return HttpResponseRedirect(reverse('tasks_home'))
     
+def task_detail(request, object_id):
+    try:
+        r={}
+        r['object']=Task.objects.get(pk=object_id)
+    except:
+        pass
+    return render_to_response('tasks/task_detail.html', r, RequestContext(request))
+    
 def project_close(request, object_id):
     try:
         obj=Project.objects.get(pk=object_id)
@@ -156,11 +169,11 @@ def create_user_owned_object(request,
         
     return render_to_response(template_name, {'form': form}, RequestContext(request))
     
-def task_archived(request):
-    r={}
-    r['form']=InboxForm()
-    r['archived_tasks']=Task.objects.filter(is_archived=True)
-    return render_to_response('tasks/task_archived.html', r, RequestContext(request))
+#~ def task_archived(request):
+    #~ r={}
+    #~ r['form']=InboxForm()
+    #~ r['archived_tasks']=Task.objects.filter(is_archived=True)
+    #~ return render_to_response('tasks/task_archived.html', r, RequestContext(request))
 
 
 

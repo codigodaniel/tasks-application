@@ -35,13 +35,20 @@
                 {%endif%}
                 </td>
                 <td valign="top">
-                {%if user.is_authenticated%}
-                    {%block content%}{%endblock%}     
-                {%endif%}    
-                {%block login%}{%endblock%}  
+                    <div id="search_form">
+                    <b>Buscar una Tarea:</b>
+                    <input class="search" type="text" value="" id="id_task_search" >
+                    </div>
+                    {%if user.is_authenticated%}
+                        {%block content%}{%endblock%}     
+                    {%endif%}    
+                    {%block login%}{%endblock%}  
                 </td>
             </tr>
         </table>
+        <script>
+            window.onload=function(){document.getElementById('id_title').focus();}
+        </script>
     </body>
 </html>
 

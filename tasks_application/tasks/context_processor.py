@@ -37,6 +37,9 @@ def tasks_dicts(request):
     r['delayed_tasks']=delayed_tasks
     
     r['inbox_form']=InboxForm()
+    r['archived_tasks']=Task.objects.filter(is_archived=True)
+    
+    r['lasts_access']=r['project_list'].order_by('-last_access')[0:5]
     
     return r
     

@@ -4,19 +4,8 @@
         <script>
             window.onload=function(){document.getElementById('id_title').focus();}
         </script>
-        <table>
-            <tr><td>
-            <h3>Ingresa una Tarea al Inbox:</h3>
-                <form method="post" action="{%url tasks_inbox_insert%}">
-                    <table>
-                        {{form}}
-                        <tr>
-                            <td></td>
-                            <td><input type="submit"></td>
-                        </tr>
-                    </table>
-                </form>
-            </td></tr>
+        <div id="task_archived">
+            <table>
                 <tr><td>
                     <h2>Tareas archivas:</h2>
                         {%if archived_tasks%}
@@ -27,6 +16,7 @@
                         <p>No tasks are available.</p>
                     {%endif%}
                 </td></tr>
-        </table>
+            </table>
+        </div>
     {%endblock%}
     
