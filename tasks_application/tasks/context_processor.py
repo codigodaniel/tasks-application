@@ -6,6 +6,7 @@ def tasks_dicts(request):
     r={}
     if request.user.is_authenticated():
         r['project_list']=Project.objects.filter(owner=request.user).filter(is_closed=False)
+        r['project_all']=Project.objects.filter(owner=request.user)
     else:
         r['project_list']=[]
 
@@ -48,7 +49,10 @@ def tasks_dicts(request):
     r['inbox_form']=InboxForm()
     r['archived_tasks']=Task.objects.filter(is_archived=True)
     
-    r['lasts_access']=r['project_list'].order_by('-last_access')[0:5]
-    
+    if r['current_project']:
+        r['lasts_access']=r['project_list'].exclude(id=r['current_project'].id).order_by('-last_access')[0:5]
+    else:
+        r['lasts_access']=r['project_list'].order_by('-last_access')[0:5]
+            
     return r
     

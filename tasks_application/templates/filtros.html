@@ -15,7 +15,7 @@
         <td colspan="3">
             Últimas carpetas filtradas:
             {% for object in lasts_access %}
-                <a href="{%url tasks_project_set object.id%}">{{object}}</a> |
+                <a href="{%url tasks_project_set object.id%}">{{object}}</a> {% if not forloop.last %} | {% endif %}
             {% endfor %}
         </td>
     </tr>

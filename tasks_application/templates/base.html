@@ -21,7 +21,7 @@
                     Bienvenido {{user}} !! 
                     <a href="{%url accounts_logout%}">Salir</a><br>
                     <h3>Acciones</h3>
-                    <a href="{%url tasks_project_general%}">Gestionar Carpetas</a><br>
+                    <a href="{%url tasks_project_general%}">Gestionar Carpetas</a> (Total {{project_all.count}})<br>
                     <p class="inbox inbox-{%if not inbox_list %}0{%else%}{{inbox_list.count}}{%endif%}">Inbox: {{inbox_list.count}}<br>
                     {%if inbox_list.count %}
                         <a href="{%url tasks_process%}">Procesar Inbox</a><br> 
@@ -29,7 +29,7 @@
                     </p>
                     {%include 'tasks/inbox_form.html'%}
                     
-                    <a href="{%url tasks_archived%}"><h3>Archivo</h3></a><br>
+                    <a href="{%url tasks_archived%}"><h3>Tareas Archivadas({{archived_tasks.count}})</h3></a><br>
                 {%else%}    
                     <a href="{%url accounts_login%}">Entrar</a>
                     <br>
