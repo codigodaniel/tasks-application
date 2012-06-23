@@ -3,7 +3,7 @@
 {%block extra_head%}
 <script>
     $(document).ready(function(){
-        $("#id_project_filter").autocomplete(WWW_ROOT+'/tasks/project/json/',{
+        $("#id_project_filter").autocomplete(WWW_ROOT+'tasks/project/json/',{
                     dataType:'json',
                     parse: function(data) {
                         return $.map(data, function(row) {
@@ -18,7 +18,7 @@
                         return item.title;
                     }
                 }).result(function(e, item){
-                        location.href=WWW_ROOT+'/tasks/project/open/'+item.id;
+                        location.href=WWW_ROOT+'tasks/project/open/'+item.id;
             });        
     });
 </script>

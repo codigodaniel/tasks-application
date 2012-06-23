@@ -6,9 +6,8 @@
         <link rel="stylesheet" type="text/css" href="{%url static 'js/jquery.autocomplete.css'%}" />
         <script src="{%url static 'js/jquery.autocomplete.min.js'%}" ></script>
         <script>
-            var WWW_ROOT='';
+            var WWW_ROOT='{%url tasks_home%}';
             var project_selector_id='';
-            
         </script>
         {%block extra_head%}{%endblock%}
     </head>
@@ -40,7 +39,7 @@
                         {%include '_search_task_form.html'%}
                         {%block content%}{%endblock%}     
                     {%endif%}    
-                    {%block login%}{%endblock%}  
+                    {%block login%}{%endblock%}
                 </td>
             </tr>
         </table>
