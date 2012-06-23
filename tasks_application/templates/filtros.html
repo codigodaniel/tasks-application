@@ -1,49 +1,48 @@
 <div id="filters">
-<script>
-    function filter_highlighted(i){
-        var url ='';
-        if(i.checked){
-            url ='{%url tasks_filter_highlighted 1%}';
-        }else{
-            url ='{%url tasks_filter_highlighted 0%}';
+    <script>
+        function filter_highlighted(i){
+            var url ='';
+            if(i.checked){
+                url ='{%url tasks_filter_highlighted 1%}';
+            }else{
+                url ='{%url tasks_filter_highlighted 0%}';
+            }
+            location.href = url;
         }
-        location.href = url;
-    }
-</script>
-<table>
-    <tr>
-        <td colspan="3">
-            Últimas carpetas filtradas:
-            {% for object in lasts_access %}
-                <a href="{%url tasks_project_set object.id%}">{{object}}</a> {% if not forloop.last %} | {% endif %}
-            {% endfor %}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label for="id_project_filter">Carpeta</label>
-        </td>
-        <td>
-            <input onfocus="this.select();" type="text" id="id_project_filter" value="{%if current_project%}{{current_project}}{%endif%}">
-        </td>
-        <td>
-            {%if current_project%}
-                <a href="{%url tasks_project_set 0%}">Desactivar</a>
-            {%else%}
-                <b>Todas las carpetas.</b>
-            {%endif%}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label for="id_highlighted_filter">Sólo destacadas</label>
-        </td>
-        <td>
-            <input onchange="filter_highlighted(this);" type="checkbox" id="id_highlighted_filter" {%if filter_highlighted == "1"%}checked{%endif%} value="1">
-        </td>
-        <td>
-        </td>
-    </tr>
-</table>
-        
+    </script>
+    <table>
+        <tr>
+            <td colspan="3">
+                Últimas carpetas filtradas:
+                {% for object in lasts_access %}
+                    <a href="{%url tasks_project_set object.id%}">{{object}}</a> {% if not forloop.last %} | {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="id_project_filter">Carpeta</label>
+            </td>
+            <td>
+                <input onfocus="this.select();" type="text" id="id_project_filter" value="{%if current_project%}{{current_project}}{%endif%}">
+            </td>
+            <td>
+                {%if current_project%}
+                    <a href="{%url tasks_project_set 0%}">Desactivar</a>
+                {%else%}
+                    <b>Todas las carpetas.</b>
+                {%endif%}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="id_highlighted_filter">Sólo destacadas</label>
+            </td>
+            <td>
+                <input onchange="filter_highlighted(this);" type="checkbox" id="id_highlighted_filter" {%if filter_highlighted == "1"%}checked{%endif%} value="1">
+            </td>
+            <td>
+            </td>
+        </tr>
+    </table>
 </div>
