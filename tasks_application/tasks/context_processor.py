@@ -10,7 +10,10 @@ def tasks_dicts(request):
         r['project_list']=[]
 
     r['pending_list']=[]
+    
     r['current_project']=request.session.get('current_project')
+    r['filter_highlighted']=request.session.get('filter_highlighted')
+
     active_tasks=Task.objects.filter(is_archived=False, is_blocked=False, is_delayed=False)
     
     bloqued_tasks=Task.objects.filter(is_blocked=True)
@@ -31,6 +34,12 @@ def tasks_dicts(request):
             qs['list']=qs['list'].filter(project__in=r['project_list'])
         bloqued_tasks=bloqued_tasks.filter(project__in=r['project_list'])
         delayed_tasks=delayed_tasks.filter(project__in=r['project_list'])
+        
+    if r['filter_highlighted'] == '1':
+        for qs in r['pending_list']:
+            qs['list']=qs['list'].filter(is_highlighted=True)
+        bloqued_tasks=bloqued_tasks.filter(is_highlighted=True)
+        delayed_tasks=delayed_tasks.filter(is_highlighted=True)
 
     r['inbox_list']=active_tasks.filter(size=0)
     r['bloqued_tasks']=bloqued_tasks

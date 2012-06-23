@@ -4,12 +4,13 @@ body{background:#F0F0F0;}
 table{width:98%;margin:10px;border:1px solid #999;}
 td{padding:10px;}
 a{color:#28B937;}
+word-wrap: break-word;
 
 input[type=text]{font-size:20px;padding:3px;}
 input[type=text],input[type=password], textarea{width:90%;}
 input.search{width:60%;}
 
-div.task{float:left;border:1px solid #999;padding:5px;margin:5px;width:120px;background:#eee;}
+div.task{float:left;border:1px solid #999;padding:5px;margin:5px;width:150px;background:#eee;word-wrap:break-word;}
 div.project{float:left;border:1px solid #999;padding:5px;margin:5px;width:160px;}
 div.highlighted{border:5px solid #F57D1B;}
 div.closed{border:5px solid blue;}
@@ -19,7 +20,7 @@ div.task a.button{display:inline-block;border:1px solid #999;height:25px;width:2
 div.project a.button{display:inline-block;border:1px solid #999;height:25px;width:25px;margin:1px;}
 
 div.task a.archive{background:url(file-manager.gif) no-repeat;}
-div.task a.delete{background:url(fileclose-2.gif) no-repeat;}
+div.task a.delete{background:url(fileclose-2.gif) no-repeat;float:right;}
 div.task a.block{background:url(fileclose-3.gif) no-repeat;}
 div.task a.delay{background:url(history_clear.gif) no-repeat;}
 div.task a.detail{background:url(gnome-graphics.gif) no-repeat;}
@@ -32,6 +33,7 @@ div.task a.archive:hover,
 div.task a.delete:hover,
 div.task a.edit:hover,
 div.task a.delay:hover,
+div.task a.detail:hover,
 div.task a.duplicate:hover,
 div.task a.block:hover,
 div.task a.highlight:hover

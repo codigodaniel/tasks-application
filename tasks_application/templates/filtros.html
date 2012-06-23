@@ -1,11 +1,24 @@
 <div id="filters">
-
-{%comment%}
+<script>
+    function filter_highlighted(i){
+        var url ='';
+        if(i.checked){
+            url ='{%url tasks_filter_highlighted 1%}';
+        }else{
+            url ='{%url tasks_filter_highlighted 0%}';
+        }
+        location.href = url;
+    }
+</script>
 <table>
     <tr>
-        <td colspan="2">
-{%endcomment%}
-<table>
+        <td colspan="3">
+            Últimas carpetas filtradas:
+            {% for object in lasts_access %}
+                <a href="{%url tasks_project_set object.id%}">{{object}}</a> |
+            {% endfor %}
+        </td>
+    </tr>
     <tr>
         <td>
             <label for="id_project_filter">Carpeta</label>
@@ -17,61 +30,20 @@
             {%if current_project%}
                 <a href="{%url tasks_project_set 0%}">Desactivar</a>
             {%else%}
-            <b>Todas las carpetas.</b>
+                <b>Todas las carpetas.</b>
             {%endif%}
         </td>
     </tr>
     <tr>
-        Últimas carpetas activadas:
-        {% for object in lasts_access %}
-            <a href="{%url tasks_project_set object.id%}">{{object}}</a> |
-        {% endfor %}
+        <td>
+            <label for="id_highlighted_filter">Sólo destacadas</label>
+        </td>
+        <td>
+            <input onchange="filter_highlighted(this);" type="checkbox" id="id_highlighted_filter" {%if filter_highlighted == "1"%}checked{%endif%} value="1">
+        </td>
+        <td>
+        </td>
     </tr>
 </table>
         
-{%comment%}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label for="id_title_filter">:</label>
-        </td>
-        <td>
-            <input type="text" id="id_title_filter">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label for="id_small_filter">Pequeñas</label>
-        </td>
-        <td>
-            <input type="checkbox" id="id_small_filter">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label for="id_size_2_filter">+ de 5 minutos</label>
-        </td>
-        <td>
-            <input type="checkbox" id="id_size_2_filter">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label for="id_with_detail_filter">Con detalle.</label>
-        </td>
-        <td>
-            <input type="checkbox" id="id_with_detail_filter">
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label for="id_archive_filter">Archivadas.</label>
-        </td>
-        <td>
-            <input type="checkbox" id="id_archive_filter">
-        </td>
-    </tr>
-</table>
-{%endcomment%}
 </div>

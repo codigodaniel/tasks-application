@@ -299,3 +299,7 @@ def task_json(request):
         # filtrar por detail
         pass
     return render_to_response('tasks/task_json.html', r, RequestContext(request))
+
+def filter_highlighted(request, value):
+    request.session['filter_highlighted']=value
+    return HttpResponseRedirect(reverse('tasks_home'))

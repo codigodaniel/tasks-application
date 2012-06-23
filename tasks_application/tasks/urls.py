@@ -9,7 +9,11 @@ from django.views.generic.simple import direct_to_template
 from django.conf import settings
 
 urlpatterns = patterns('tasks.views',
+    #~ filters
     (r'^project/open/(?P<object_id>\d+)/$','project_set',{},'tasks_project_set'),
+    (r'^filter/highlighted/(?P<value>\d+)/$','filter_highlighted',{},'tasks_filter_highlighted'),
+    
+    #~ project
     (r'^project/$','project_general',{},'tasks_project_general'),
     (r'^project/new/$','create_user_owned_object',{'model':Project,'form_class':ProjectForm,'post_save_redirect':settings.HOME_URL},'tasks_project_new'),
     (r'^project/(?P<object_id>\d+)/close/$','project_close',{},'tasks_project_close'),
