@@ -7,7 +7,7 @@
     }
     $(document).ready(function(){
         project_selector_id='id_project_title';
-        $("#"+project_selector_id).val('{{inbox_first.project}}');
+        $("#"+project_selector_id).val('{{inbox_first.project|escapejs}}');
         {%include 'project_selector_js.html'%}
     });
 </script>

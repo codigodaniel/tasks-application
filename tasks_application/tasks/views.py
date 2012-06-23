@@ -168,15 +168,6 @@ def create_user_owned_object(request,
         template_name = "%s/%s_form.html" % (model._meta.app_label, model._meta.object_name.lower())
         
     return render_to_response(template_name, {'form': form}, RequestContext(request))
-    
-#~ def task_archived(request):
-    #~ r={}
-    #~ r['form']=InboxForm()
-    #~ r['archived_tasks']=Task.objects.filter(is_archived=True)
-    #~ return render_to_response('tasks/task_archived.html', r, RequestContext(request))
-
-
-
 
     if not template_name:
         template_name = "%s/%s_form.html" % (model._meta.app_label, model._meta.object_name.lower())

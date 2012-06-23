@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django.core.urlresolvers import reverse
+
 SIZE_CHOICES = (
     #~ (0, 'Sin definir'),
     (1, '- de 5 minutos'),
@@ -29,7 +31,7 @@ class Task(models.Model):
     is_delayed=models.BooleanField(blank=True, default=0, verbose_name='Pospuesta')
     is_highlighted=models.BooleanField(blank=True, default=0, verbose_name='Destacada')
     def absolute_url(self):
-        return '/tasks/task/'+str(self.id)+'/edit/'
+        return reverse('tasks_task_edit', args=[self.id])
     def __unicode__(self):
         return self.title
 

@@ -8,6 +8,7 @@
         <script>
             var WWW_ROOT='';
             var project_selector_id='';
+            
         </script>
         {%block extra_head%}{%endblock%}
     </head>
@@ -35,11 +36,8 @@
                 {%endif%}
                 </td>
                 <td valign="top">
-                    <div id="search_form">
-                    <b>Buscar una Tarea:</b>
-                    <input class="search" type="text" value="" id="id_task_search" >
-                    </div>
                     {%if user.is_authenticated%}
+                        {%include '_search_task_form.html'%}
                         {%block content%}{%endblock%}     
                     {%endif%}    
                     {%block login%}{%endblock%}  

@@ -4,7 +4,7 @@
 <script>
     $(document).ready(function(){
         project_selector_id='id_project_title';
-        $("#"+project_selector_id).val('{{object.project}}');
+        $("#"+project_selector_id).val('{{object.project|escapejs}}');
         {%include 'project_selector_js.html'%}
     });
 </script>

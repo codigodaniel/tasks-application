@@ -1,0 +1,11 @@
+                    <div id="search_form">
+                        <script>
+                            $(document).ready(function(){
+                                $("#id_task_search").autocomplete(WWW_ROOT+'/tasks/task/json/').result(function(event, item) {  
+                                    location.href = item[1];
+                                });
+                            });
+                        </script>
+                    <b>Buscar una Tarea:</b>
+                    <input class="search" type="text" value="" id="id_task_search" >
+                    </div>
