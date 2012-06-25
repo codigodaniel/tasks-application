@@ -28,6 +28,7 @@ div.task a.duplicate{background:url(gnome-netstatus-txrx.gif) no-repeat;}
 div.task a.highlight{background:url(emblem-bookmarks-closed.gif) no-repeat;}
 div.project a.delete{background:url(fileclose-2.gif) no-repeat;}
 div.project a.close{background:blue;}
+div.project a.activate{background:green;}
 
 div.task a.archive:hover,
 div.task a.delete:hover,
