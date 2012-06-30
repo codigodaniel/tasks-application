@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 
 SIZE_CHOICES = (
-    #~ (0, 'Sin definir'),
+    #~ (0, 'In Box'),
     (1, '- de 5 minutos'),
     (2, '+ de 5 minutos'),
     (3, '+ de 2 horas'),

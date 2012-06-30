@@ -3,19 +3,25 @@
 body{background:#F0F0F0;}
 table{width:98%;margin:10px;border:1px solid #999;}
 td{padding:10px;}
-a{color:#28B937;}
+a{color:#348C3D;}
 
 input[type=text]{font-size:20px;padding:3px;}
 input[type=text],input[type=password], textarea{width:90%;}
 input.search{width:60%;}
 
-div.tasks_pending_list_label{border:2px solid  #bbb;background:#83B5ED;border-radius:10px;display:table;width:98%;}
-div.tasks_pending_list_project_label{border:2px solid  #bbb;background:#5EA1EC;float:left;display:inline-block;border-radius:10px;}
-div.tasks_pending_list_project_label h3{border:2px solid  #bbb;background:#4A9CF7;width:96%;font-weight:700;text-align:center;border-radius:10px;margin:auto;}
+div.tasks_pending_list_label{border:2px solid  #bbb;background:#C4D7ED;border-radius:10px;display:table;margin:6px;padding:6px;width:96%;}
+div.tasks_pending_list_project_label{border:2px solid  #bbb;background:#CADEF5;border-radius:10px;}
+div.tasks_pending_list_project_label h3{border:2px solid  #bbb;background:#A9CCF5;font-weight:700;text-align:center;border-radius:10px;margin:10px;}
 
-div.task{float:left;border:1px solid #999;padding:5px;margin:5px;width:150px;background:#eee;word-wrap:break-word;}
+div.tasks_pending_list_label h2{text-align:center;}
+
+div.task, div.tasks_pending_list_project_label{float:left;}
+div.tasks_pending_list_project_label{display:inline-block;}
+div.task{width:150px;}
+
+div.task{border:1px solid #999;padding:5px;margin:5px;background:#eee;word-wrap:break-word;}
 div.project{float:left;border:1px solid #999;padding:5px;margin:5px;width:160px;}
-div.highlighted{border:5px solid #F57D1B;}
+div.highlighted{border:5px solid #EBED4C;background:#ECED87;}
 div.closed{border:5px solid blue;}
 div.task a {color:green;padding:3px;font-weight:700;font-size:20px;}
 div.project a {color:green;padding:3px;font-weight:700;font-size:20px;}
@@ -56,6 +62,6 @@ width:300px;
 
 div#inbox_form{border:2px solid  #bbb;background:#B3E3AF;padding:8px;margin:8px;border-radius:10px;}
 div#search_form{border:2px solid  #bbb;background:#BAAFE3;padding:8px;margin:8px;border-radius:10px;}
-div#filter_form{border:2px solid  #bbb;background:#E2E3AF;padding:8px;margin:8px;border-radius:10px;}
+div#filter_form{border:2px solid  #bbb;background:#BCCEE3;padding:8px;margin:8px;border-radius:10px;}
 div#task_archived{border:2px solid  #bbb;background:#E2E3AF;padding:8px;margin:8px;border-radius:10px;}
 div#project_all{border:2px solid  #bbb;background:#E2E3AF;padding:8px;margin:8px;border-radius:10px;}

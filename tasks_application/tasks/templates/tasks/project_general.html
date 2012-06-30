@@ -21,10 +21,8 @@
                     <tr><td>
                         <h2>Carpetas</h2>
                         
-                        {{user.project_set.all}}
-                        
-                            {%if open_projects%}
-                                {%for object in open_projects%}
+                            {%if user.project_set.all%}
+                                {%for object in user.project_set.all%}
                                     {%include 'tasks/project_float.html'%}
                                 {%endfor%}
                             {%else%}

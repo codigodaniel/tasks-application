@@ -27,51 +27,37 @@
     {%block content%}
         <div id="filter_form">
             {%include 'filtros.html'%}
-            
-                {%for object in pending_list%}
-                    {%if forloop.first%}
-                        {%include 'tasks/_open_size_box.html'%}
-                        {%include 'tasks/_open_project_box.html'%}
-                    {%else%}
-                        
-                        {%ifchanged object.project%}
-                            </div><!-- project -->
-                        {%endifchanged%}
-                        
-                        {%ifchanged object.size%}
-                            </div><!-- size -->
-                            {%include 'tasks/_open_size_box.html'%}
-                        {%endifchanged%}
-                        
-                        {%ifchanged object.project%}
-                            {%include 'tasks/_open_project_box.html'%}
-                        {%endifchanged%}
-                    {%endif%}
+                {%for list in filtered_lists%}
+                    {%include 'tasks/_open_size_box.html'%}
+                    {%for object in list%}
                     
-                    {%include 'tasks/task_float.html'%}
-                {%endfor%}
-                
-                {%if pending_list%}
-                        </div><!-- project SOY EL ULTIMO-->
-                    </div><!-- size SOY EL ULTIMO -->
-                {%endif%}
+                        {%if forloop.first%}
+                            {%if object.is_delayed%}
+                                <h2>Postergadas</h2>
+                            {%else%}
+                                {%if object.is_blocked%}
+                                    <h2>Bloqueadas</h2>
+                                {%else%}
+                                    <h2>{{object.get_size_display}}</h2>
+                                {%endif%}
+                            {%endif%}
+                        {%endif%}
 
-                    <div class="tasks_pending_list_label">
-                    <h2>Bloqueadas</h2>
-                    {% for object in bloqued_tasks %}
+                        {%ifchanged object.project.id%}
+                                {%if not forloop.first%}
+                                    </div><!-- project -->
+                                {%endif%}
+                                {%include 'tasks/_open_project_box.html'%}
+                        {%endifchanged%}
+
                         {%include 'tasks/task_float.html'%}
-                    {% empty %}
-                        <p>No tasks are available.</p>
-                    {% endfor %}
-                    </div>
-                    <div class="tasks_pending_list_label">
-                    <h2>Pospuestas</h2>
-                    {% for object in delayed_tasks %}
-                        {%include 'tasks/task_float.html'%}
-                    {% empty %}
-                        <p>No tasks are available.</p>
-                    {% endfor %}
-                </div>
+
+                        {%if forloop.last%}
+                            </div><!-- project -->
+                        {%endif%}
+                    {%endfor%}
+                    </div><!-- size -->
+                {%endfor%}
         </div>
     {%endblock%}
     
