@@ -2,6 +2,9 @@
     <head>
         <title>{%block title%}{%endblock%}</title>  
         <link rel="stylesheet" type="text/css" href="{%url static 'css/style.css'%}" />
+        <style>
+            div {border:1px solid green; padding:5px; margin:5px;}
+        </style>
         <link rel="stylesheet" type="text/css" href="{%url static 'css/error.css'%}" />
         <script src="{%url static 'js/jquery.js'%}" ></script>
         <link rel="stylesheet" type="text/css" href="{%url static 'js/jquery.autocomplete.css'%}" />
@@ -20,7 +23,7 @@
                 {%if user.is_authenticated%}    
                     Bienvenido {{user}} !! 
                     <a href="{%url accounts_logout%}">Salir</a><br>
-                    <a href="{%url tasks_project_general%}">Gestionar Carpetas</a> {{project_all.count}}<br>
+                    <a href="{%url tasks_project_general%}">Gestionar Carpetas</a> {{all_my_projects.count}}<br>
                     <p class="inbox inbox-{%if not inbox_list %}0{%else%}{{inbox_list.count}}{%endif%}">Inbox: {{inbox_list.count}}<br>
                     {%if inbox_list.count %}
                         <a href="{%url tasks_process%}">Procesar Inbox</a><br> 

@@ -19,9 +19,12 @@
                     </form>
                 </td></tr>
                     <tr><td>
-                        <h2>Carpetas Creados:</h2>
-                            {%if project_list%}
-                                {%for object in project_list%}
+                        <h2>Carpetas</h2>
+                        
+                        {{user.project_set.all}}
+                        
+                            {%if open_projects%}
+                                {%for object in open_projects%}
                                     {%include 'tasks/project_float.html'%}
                                 {%endfor%}
                             {%else%}
