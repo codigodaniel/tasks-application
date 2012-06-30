@@ -4,11 +4,14 @@ body{background:#F0F0F0;}
 table{width:98%;margin:10px;border:1px solid #999;}
 td{padding:10px;}
 a{color:#28B937;}
-word-wrap: break-word;
 
 input[type=text]{font-size:20px;padding:3px;}
 input[type=text],input[type=password], textarea{width:90%;}
 input.search{width:60%;}
+
+div.tasks_pending_list_label{border:2px solid  #bbb;background:#83B5ED;float:left;width:100%;border-radius:10px;}
+div.tasks_pending_list_project_label{border:2px solid  #bbb;background:#5EA1EC;float:left;display:inline-block;border-radius:10px;}
+span.tasks_pending_list_project_title{border:2px solid  #bbb;background:#4A9CF7;float:left;width:100%;font-weight:700;text-align:center;border-radius:10px;}
 
 div.task{float:left;border:1px solid #999;padding:5px;margin:5px;width:150px;background:#eee;word-wrap:break-word;}
 div.project{float:left;border:1px solid #999;padding:5px;margin:5px;width:160px;}
