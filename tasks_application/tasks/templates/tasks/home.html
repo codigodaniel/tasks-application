@@ -55,6 +55,23 @@
                         </div><!-- project SOY EL ULTIMO-->
                     </div><!-- size SOY EL ULTIMO -->
                 {%endif%}
+
+                    <div class="tasks_pending_list_label">
+                    <h2>Bloqueadas</h2>
+                    {% for object in bloqued_tasks %}
+                        {%include 'tasks/task_float.html'%}
+                    {% empty %}
+                        <p>No tasks are available.</p>
+                    {% endfor %}
+                    </div>
+                    <div class="tasks_pending_list_label">
+                    <h2>Pospuestas</h2>
+                    {% for object in delayed_tasks %}
+                        {%include 'tasks/task_float.html'%}
+                    {% empty %}
+                        <p>No tasks are available.</p>
+                    {% endfor %}
+                </div>
         </div>
     {%endblock%}
     
