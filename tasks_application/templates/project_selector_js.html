@@ -1,5 +1,4 @@
-console.log(project_selector_id);
-        $("#"+project_selector_id).autocomplete(WWW_ROOT+'tasks/project/json/',{
+        $("#"+project_selector_id).autocomplete(WWW_ROOT+'/tasks/project/json/',{
                     dataType:'json',
                     parse: function(data) {
                         return $.map(data, function(row) {

@@ -49,9 +49,35 @@ class Task(models.Model):
     is_archived = models.BooleanField(blank = True, default = 0, verbose_name = 'Archivada')
     is_delayed = models.BooleanField(blank = True, default = 0, verbose_name = 'Pospuesta')
     is_highlighted = models.BooleanField(blank = True, default = 0, verbose_name = 'Destacada')
-    
+            
+    def change_block(self):
+        if self.is_blocked:
+            self.is_blocked = False
+        else:
+            self.is_blocked = True
+        self.save()
+    def change_archive(self):
+        if self.is_archived == False:
+            self.is_archived = True
+            self.is_delayed = False
+            self.is_highlighted = False
+            self.is_blocked = False
+        else:
+            self.is_archived = False
+        self.save()
+    def change_delay(self):
+        if self.is_delayed:
+            self.is_delayed = False
+        else:
+            self.is_delayed = True
+        self.save()
+    def change_highlight(self):
+        if self.is_highlighted:
+            self.is_highlighted = False
+        else:
+            self.is_highlighted = True
+        self.save()
     def absolute_url(self):
         return reverse('tasks_task_edit', args = [self.id])
-        
     def __unicode__(self):
         return self.title
