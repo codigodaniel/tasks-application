@@ -26,6 +26,18 @@ class ProjectManager(models.Manager):
         return p
 
 
+class TaskManager(models.Manager):
+    def duplicate(self, object_id):
+        try:
+            obj = self.get(pk = object_id)
+            obj.pk = None
+            obj.title = 'Copia de: '+obj.title
+            obj.save()
+        except:
+            pass
+        return obj
+
+
 class Project(models.Model):
     owner = models.ForeignKey(User, verbose_name = 'Usuario')
     title = models.CharField(max_length = 255, verbose_name = 'Nombre')
@@ -50,6 +62,8 @@ class Task(models.Model):
     is_delayed = models.BooleanField(blank = True, default = 0, verbose_name = 'Pospuesta')
     is_highlighted = models.BooleanField(blank = True, default = 0, verbose_name = 'Destacada')
             
+    objects = TaskManager()
+    
     def change_block(self):
         if self.is_blocked:
             self.is_blocked = False

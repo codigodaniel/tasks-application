@@ -78,13 +78,11 @@ def task_highlight(request, object_id):
     return HttpResponseRedirect(reverse('tasks_home'))
 
 def task_duplicate(request, object_id):
-    try:
-        obj = Task.objects.get(pk = object_id)
-        obj.pk = None
-        obj.save()
-    except:
-        pass
-    return HttpResponseRedirect(reverse('tasks_home'))
+    obj = Task.objects.duplicate(object_id)
+    if obj:
+        return HttpResponseRedirect(reverse('tasks_task_edit', kwargs={'object_id': obj.id}))
+    else:
+        return HttpResponseRedirect(reverse('tasks_home'))
     
 def task_detail(request, object_id):
     try:
