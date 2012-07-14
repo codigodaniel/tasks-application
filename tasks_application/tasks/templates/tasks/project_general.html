@@ -1,7 +1,6 @@
 {%extends 'base.html'%}
     {%block title%}Proyectos{%endblock%}
     {%block content%}
-      
         <div id="project_all">
             <table>
                 <tr><td>
@@ -18,7 +17,6 @@
                 </td></tr>
                     <tr><td>
                         <h2>Carpetas</h2>
-                        
                             {%if user.project_set.all%}
                                 {%for object in user.project_set.all%}
                                     {%include 'tasks/_project_float.html'%}

@@ -1,19 +1,20 @@
 {%extends 'base.html'%}
-{%block title%} {{object}} {%endblock%}
-{%block content%}
-<h3>Carpeta</h3>
-                    <table >
-                        <tr><td> 
-                        <strong>{{object}}</strong><br>
-                        {{object.detail}}
-                            <form method="post" action="{%url tasks_project_delete object.id%}">
-                            <table>
-                                <tr>
-                                    <td> </td>
-                                    <td><input type="submit" value="Borrar definitivamente"> </td>
-                                </tr>
-                            </table>
-                            </form>
-                        </td></tr>
-                    </table>                
-{%endblock%}
+    {%block title%} {{object}} {%endblock%}
+    {%block content%}
+        <h3>Carpeta</h3>
+        <table >
+            <tr><td> 
+            <strong>{{object}}</strong><br>
+            {{object.detail}}
+                <form method="post" action="{%url tasks_project_delete object.id%}">
+                    <table>
+                        <tr>
+                            <td> </td>
+                            <td><input type="submit" value="Borrar definitivamente"> </td>
+                        </tr>
+                    </table>
+                </form>
+            </td></tr>
+        </table>                
+    {%endblock%}
+    

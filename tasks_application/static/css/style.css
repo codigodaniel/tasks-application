@@ -20,7 +20,7 @@ div.tasks_pending_list_project_label{display:inline-block;}
 div.task{width:150px;}
 
 div.task{border:1px solid #999;padding:5px;margin:5px;background:#eee;word-wrap:break-word;}
-div.project{float:left;border:1px solid #999;padding:5px;margin:5px;width:160px;}
+div.project{float:left;border:1px solid #999;padding:5px;margin:5px;width:160px;word-wrap:break-word;}
 div.highlighted{border:5px solid #EBED4C;background:#ECED87;}
 div.closed{border:5px solid blue;}
 div.task a {color:green;padding:3px;font-weight:700;font-size:20px;}
@@ -35,9 +35,9 @@ div.task a.delay{background:url(history_clear.gif) no-repeat;}
 div.task a.detail{background:url(gnome-graphics.gif) no-repeat;}
 div.task a.duplicate{background:url(gnome-netstatus-txrx.gif) no-repeat;}
 div.task a.highlight{background:url(emblem-bookmarks-closed.gif) no-repeat;}
-div.project a.delete{background:url(fileclose-2.gif) no-repeat;}
-div.project a.close{background:blue;}
-div.project a.activate{background:green;}
+div.project a.delete{background:url(fileclose-2.gif) no-repeat;float:right;}
+div.project a.close{background:url(file-manager.gif) no-repeat;}
+div.project a.activate{background:url(gnome-directory.gif) no-repeat;}
 
 div.task a.archive:hover,
 div.task a.delete:hover,
@@ -63,5 +63,5 @@ width:300px;
 div#inbox_form{border:2px solid  #bbb;background:#B3E3AF;padding:8px;margin:8px;border-radius:10px;}
 div#search_form{border:2px solid  #bbb;background:#BAAFE3;padding:8px;margin:8px;border-radius:10px;}
 div#filter_form{border:2px solid  #bbb;background:#BCCEE3;padding:8px;margin:8px;border-radius:10px;}
-div#task_archived{border:2px solid  #bbb;background:#E2E3AF;padding:8px;margin:8px;border-radius:10px;}
-div#project_all{border:2px solid  #bbb;background:#E2E3AF;padding:8px;margin:8px;border-radius:10px;}
+div#task_archived{border:2px solid  #bbb;background:#BCCEE3;padding:8px;margin:8px;border-radius:10px;}
+div#project_all{border:2px solid  #bbb;background:#BCCEE3;padding:8px;margin:8px;border-radius:10px;}
