@@ -78,6 +78,9 @@ class Project(models.Model):
     
     def to_json(self):
         return '{"title":"'+self.title+'"}'
+
+    def count_tasks(self):
+        return self.task_set.all().count()
         
     def __unicode__(self):
         return self.title
