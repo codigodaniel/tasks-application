@@ -1,9 +1,15 @@
 <div id="inbox_form">
     <script>
         $(document).ready(function(){
+            
             project_selector_id='id_project_title_inbox';
-            {%if current_project%}$("#"+project_selector_id).val('{{current_project|escapejs}}');{%endif%}
-            {%include 'project_selector_js.html'%}
+            {%if current_project%}
+                $("#"+project_selector_id).val('{{current_project|escapejs}}');
+                $('#id_title').focus();
+            {%else%}
+                $('#'+project_selector_id).focus();
+            {%endif%}
+            {%include '_project_selector_js.html'%}
         });
     </script>
 

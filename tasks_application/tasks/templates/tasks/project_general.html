@@ -1,9 +1,7 @@
 {%extends 'base.html'%}
     {%block title%}Proyectos{%endblock%}
     {%block content%}
-        <script>
-            window.onload=function(){document.getElementById('id_title').focus();}
-        </script>
+      
         <div id="project_all">
             <table>
                 <tr><td>
@@ -23,7 +21,7 @@
                         
                             {%if user.project_set.all%}
                                 {%for object in user.project_set.all%}
-                                    {%include 'tasks/project_float.html'%}
+                                    {%include 'tasks/_project_float.html'%}
                                 {%endfor%}
                             {%else%}
                             <p>No projects are available.</p>

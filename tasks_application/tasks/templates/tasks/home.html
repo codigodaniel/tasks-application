@@ -26,7 +26,7 @@
     
     {%block content%}
         <div id="filter_form">
-            {%include 'filtros.html'%}
+            {%include '_filtros.html'%}
                 {%for list in filtered_lists%}
                     {%include 'tasks/_open_size_box.html'%}
                     {%for object in list%}
@@ -50,7 +50,7 @@
                                 {%include 'tasks/_open_project_box.html'%}
                         {%endifchanged%}
 
-                        {%include 'tasks/task_float.html'%}
+                        {%include 'tasks/_task_float.html'%}
 
                         {%if forloop.last%}
                             </div><!-- project -->

@@ -11,10 +11,10 @@ SIZE_CHOICES = (
     (4, '?'),
 )
 
-
 #~ :D
 class ProjectManager(models.Manager):
-    def get_or_create_by_owner_and_title(self,owner,title):
+	
+    def get_or_create_by_owner_and_title(self, owner, title):
         p = None
         ps = self.filter(owner = owner).filter(title = title)
         if ps:
@@ -27,6 +27,36 @@ class ProjectManager(models.Manager):
 
 
 class TaskManager(models.Manager):
+	
+    def toggle_highlight(self, object_id):
+		try:
+			obj = Task.objects.get(pk = object_id)
+			obj.toggle_highlight()
+		except:
+			pass
+			
+    def toggle_block(self, object_id):
+		try:
+			obj = Task.objects.get(pk = object_id)
+			obj.toggle_block()
+		except:
+			pass
+		
+    def toggle_archived(self, object_id):
+		try:
+			obj = Task.objects.get(pk = object_id)
+			obj.toggle_archived()
+			return obj
+		except:
+			pass
+	
+    def toggle_delay(self, object_id):
+		try:
+			obj = Task.objects.get(pk = object_id)
+			obj.toggle_delay()
+		except:
+			pass
+
     def duplicate(self, object_id):
         try:
             obj = self.get(pk = object_id)
@@ -48,6 +78,7 @@ class Project(models.Model):
     
     def to_json(self):
         return '{"title":"'+self.title+'"}'
+        
     def __unicode__(self):
         return self.title
 
@@ -64,13 +95,14 @@ class Task(models.Model):
             
     objects = TaskManager()
     
-    def change_block(self):
+    def toggle_block(self):
         if self.is_blocked:
             self.is_blocked = False
         else:
             self.is_blocked = True
         self.save()
-    def change_archive(self):
+        
+    def toggle_archived(self):
         if self.is_archived == False:
             self.is_archived = True
             self.is_delayed = False
@@ -79,19 +111,24 @@ class Task(models.Model):
         else:
             self.is_archived = False
         self.save()
-    def change_delay(self):
+        
+    def toggle_delay(self):
         if self.is_delayed:
             self.is_delayed = False
         else:
             self.is_delayed = True
         self.save()
-    def change_highlight(self):
+        
+    def toggle_highlight(self):
         if self.is_highlighted:
             self.is_highlighted = False
         else:
             self.is_highlighted = True
         self.save()
+        
     def absolute_url(self):
         return reverse('tasks_task_edit', args = [self.id])
-    def __unicode__(self):
+        
+    def __unicode__(self):		
         return self.title
+

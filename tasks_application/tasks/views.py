@@ -45,38 +45,6 @@ def process(request):
     else:
         return HttpResponseRedirect(reverse('tasks_home'))
 
-def task_delay(request, object_id):
-    try:
-        obj = Task.objects.get(pk = object_id)
-        obj.change_delay()
-    except:
-        pass
-    return HttpResponseRedirect(reverse('tasks_home'))
-    
-def task_archive(request, object_id):
-    try:
-        obj = Task.objects.get(pk = object_id)
-        obj.change_archive()
-    except:
-        pass
-    return HttpResponseRedirect(reverse('tasks_home'))
-
-def task_block(request, object_id):
-    try:
-        obj = Task.objects.get(pk = object_id)
-        obj.change_block()
-    except:
-        pass
-    return HttpResponseRedirect(reverse('tasks_home'))
-    
-def task_highlight(request, object_id):
-    try:
-        obj = Task.objects.get(pk = object_id)
-        obj.change_highlight()
-    except:
-        pass
-    return HttpResponseRedirect(reverse('tasks_home'))
-
 def task_duplicate(request, object_id):
     obj = Task.objects.duplicate(object_id)
     if obj:
@@ -200,9 +168,7 @@ def task_create(request, model = None,
     if request.method  ==  'POST':
         p = Project.objects.get_or_create_by_owner_and_title(request.user,request.POST.get('project_title_inbox'))
         form = form_class(request.POST, request.FILES)
-        #~ del form.fields['project']
         if form.is_valid():
-            #~ new_object = Task()
             new_object = form.save(commit = False)
             new_object.project = p
             new_object.save()
@@ -213,7 +179,7 @@ def task_create(request, model = None,
     else:
         form = form_class()
     if not template_name:
-        template_name = "%s/%s_form.html" % (model._meta.app_label, model._meta.object_name.lower())
+        template_name = "%s/%s_insert_form.html" % (model._meta.app_label, model._meta.object_name.lower())
     return render_to_response(template_name, {'form': form}, RequestContext(request))
 
 def project_json(request):
@@ -243,3 +209,23 @@ def task_json(request):
 def filter_highlighted(request, value):
     request.session['filter_highlighted'] = value
     return HttpResponseRedirect(reverse('tasks_home'))
+
+def task_toggle_block(request, object_id):
+    Task.objects.toggle_block(object_id)
+    return HttpResponseRedirect(reverse('tasks_home'))
+    
+def task_toggle_highlight(request, object_id):
+    Task.objects.toggle_highlight(object_id)
+    return HttpResponseRedirect(reverse('tasks_home'))
+
+def task_toggle_delay(request, object_id):
+    Task.objects.toggle_delay(object_id)
+    return HttpResponseRedirect(reverse('tasks_home'))
+    
+def task_toggle_archived(request, object_id):
+    obj = Task.objects.toggle_archived(object_id)
+    if obj:
+        return HttpResponseRedirect(reverse('tasks_task_edit', kwargs={'object_id': obj.id}))
+    else:
+        return HttpResponseRedirect(reverse('tasks_home'))
+

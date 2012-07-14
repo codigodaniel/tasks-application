@@ -26,8 +26,9 @@
                         <a href="{%url tasks_process%}">Procesar Inbox</a><br> 
                     {%endif%}
                     </p>
-                    {%include 'tasks/inbox_form.html'%}
-                    
+                    {%block inbox%}
+						{%include 'tasks/_inbox_form.html'%}
+                    {%endblock%}
                     <a href="{%url tasks_archived%}"><h3>Tareas Archivadas({{archived_tasks.count}})</h3></a><br>
                 {%else%}    
                     <a href="{%url accounts_login%}">Entrar</a>
@@ -43,9 +44,6 @@
                 </td>
             </tr>
         </table>
-        <script>
-            window.onload=function(){document.getElementById('id_title').focus();}
-        </script>
+        {%block extra_js%}{%endblock%}
     </body>
 </html>
-
