@@ -225,7 +225,6 @@ def task_toggle_delay(request, object_id):
 def task_toggle_archived(request, object_id):
     obj = Task.objects.toggle_archived(object_id)
     if obj:
-        return HttpResponseRedirect(reverse('tasks_task_edit', kwargs={'object_id': obj.id}))
-    else:
-        return HttpResponseRedirect(reverse('tasks_home'))
-
+        if obj.is_archived == False:
+            return HttpResponseRedirect(reverse('tasks_task_edit', kwargs={'object_id': obj.id}))
+    return HttpResponseRedirect(reverse('tasks_home'))
