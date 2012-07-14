@@ -13,7 +13,7 @@ SIZE_CHOICES = (
 
 #~ :D
 class ProjectManager(models.Manager):
-	
+    
     def get_or_create_by_owner_and_title(self, owner, title):
         p = None
         ps = self.filter(owner = owner).filter(title = title)
@@ -27,35 +27,35 @@ class ProjectManager(models.Manager):
 
 
 class TaskManager(models.Manager):
-	
+    
     def toggle_highlight(self, object_id):
-		try:
-			obj = Task.objects.get(pk = object_id)
-			obj.toggle_highlight()
-		except:
-			pass
-			
+        try:
+            obj = Task.objects.get(pk = object_id)
+            obj.toggle_highlight()
+        except:
+            pass
+            
     def toggle_block(self, object_id):
-		try:
-			obj = Task.objects.get(pk = object_id)
-			obj.toggle_block()
-		except:
-			pass
-		
+        try:
+            obj = Task.objects.get(pk = object_id)
+            obj.toggle_block()
+        except:
+            pass
+        
     def toggle_archived(self, object_id):
-		try:
-			obj = Task.objects.get(pk = object_id)
-			obj.toggle_archived()
-			return obj
-		except:
-			pass
-	
+        try:
+            obj = Task.objects.get(pk = object_id)
+            obj.toggle_archived()
+            return obj
+        except:
+            pass
+    
     def toggle_delay(self, object_id):
-		try:
-			obj = Task.objects.get(pk = object_id)
-			obj.toggle_delay()
-		except:
-			pass
+        try:
+            obj = Task.objects.get(pk = object_id)
+            obj.toggle_delay()
+        except:
+            pass
 
     def duplicate(self, object_id):
         try:
@@ -129,6 +129,6 @@ class Task(models.Model):
     def absolute_url(self):
         return reverse('tasks_task_edit', args = [self.id])
         
-    def __unicode__(self):		
+    def __unicode__(self):      
         return self.title
 
