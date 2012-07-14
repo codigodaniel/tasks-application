@@ -20,9 +20,9 @@ div.tasks_pending_list_project_label{display:inline-block;}
 div.task{width:150px;}
 
 div.task{border:1px solid #999;padding:5px;margin:5px;background:#eee;word-wrap:break-word;}
-div.project{float:left;border:1px solid #999;padding:5px;margin:5px;width:160px;word-wrap:break-word;}
+div.project{float:left;border:1px solid #999;padding:5px;margin:5px;width:160px;background:#eee;word-wrap:break-word;}
 div.highlighted{border:5px solid #EBED4C;background:#ECED87;}
-div.closed{border:5px solid blue;}
+div.closed{border:5px solid #9696F6;background:#ACACFA;}
 div.task a {color:green;padding:3px;font-weight:700;font-size:20px;}
 div.project a {color:green;padding:3px;font-weight:700;font-size:20px;}
 div.task a.button{display:inline-block;border:1px solid #999;height:25px;width:25px;margin:1px;}
