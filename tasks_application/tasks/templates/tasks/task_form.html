@@ -15,25 +15,24 @@
     
     {%block content%}
         <h3>Tarea</h3>
-        <table >
+        <table>
             <tr><td> 
                 <form method="post" action="">
-                <table>
-                    <tr>
-                        <td></td>
-                        <td>
-                            {%include 'tasks/_task_actions.html'%}
-                            
-                        </td>
-                    </tr>
-                   {{form}}
-                    <tr>
-                        <td></td>
-                        <td>
-                            {%include 'tasks/_task_actions.html'%}
-                        </td>
-                    </tr>
-                </table>
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td>
+                                {%include 'tasks/_task_actions.html'%}
+                            </td>
+                        </tr>
+                           {{form}}
+                        <tr>
+                            <td></td>
+                            <td>
+                                {%include 'tasks/_task_actions.html'%}
+                            </td>
+                        </tr>
+                    </table>
                 </form>
             </td></tr>
         </table>                

@@ -1,40 +1,41 @@
 {%extends 'base.html'%}
-{%block title%} {{inbox_first}} {%endblock%}
-{%block extra_head%}
-<script>
-    function format(item) {
-        return item;
-    }
-    $(document).ready(function(){
-        project_selector_id='id_project_title';
-        $("#"+project_selector_id).val('{{inbox_first.project|escapejs}}');
-        {%include '_project_selector_js.html'%}
-    });
-</script>
-{%endblock%}
-{%block content%}
-<h3>Esta Tarea ¿Requiere acción?</h3>
-<b>Sí:</b> Entonces debes clasificarla, y elegir tamaño. <br>
-<b>No:</b> Entonces debes archivarla.
-                    <table >
-                        <tr><td> 
-                        {% if inbox_first %}
-                            <form method="post" action="{%url tasks_process_update inbox_first.id%}">
-                            <table>
-                                <tr>
-                                    <td><a title="Borrar definitivamente" href="{%url tasks_task_delete inbox_first.id%}">Eliminar</a> </td>
-                                    <td><input type="submit" value="Siguiente"> </td>
-                                </tr>
-                               {{form}}
-                                <tr>
-                                    <td><a title="Borrar definitivamente" href="{%url tasks_task_delete inbox_first.id%}">Eliminar</a> </td>
-                                    <td><input type="submit" value="Siguiente"> </td>
-                                </tr>
-                            </table>
-                            </form>
-                        {% else %}
-                            <p>No hay Tareas en el Inbox.</p>
-                        {% endif %}
-                        </td></tr>
-                    </table>                
-{%endblock%}
+    {%block title%} {{inbox_first}} {%endblock%}
+    {%block extra_head%}
+        <script>
+            function format(item) {
+                return item;
+            }
+            $(document).ready(function(){
+                project_selector_id='id_project_title';
+                $("#"+project_selector_id).val('{{inbox_first.project|escapejs}}');
+                {%include '_project_selector_js.html'%}
+            });
+        </script>
+    {%endblock%}
+    {%block content%}
+        <h3>Esta Tarea ¿Requiere acción?</h3>
+        <b>Sí:</b> Entonces debes clasificarla, y elegir tamaño. <br>
+        <b>No:</b> Entonces debes archivarla.
+        <table>
+            <tr><td> 
+            {% if inbox_first %}
+                <form method="post" action="{%url tasks_process_update inbox_first.id%}">
+                    <table>
+                        <tr>
+                            <td><a title="Borrar definitivamente" href="{%url tasks_task_delete inbox_first.id%}">Eliminar</a> </td>
+                            <td><input type="submit" value="Siguiente"> </td>
+                        </tr>
+                           {{form}}
+                        <tr>
+                            <td><a title="Borrar definitivamente" href="{%url tasks_task_delete inbox_first.id%}">Eliminar</a> </td>
+                            <td><input type="submit" value="Siguiente"> </td>
+                        </tr>
+                    </table>
+                </form>
+            {% else %}
+                <p>No hay Tareas en el Inbox.</p>
+            {% endif %}
+            </td></tr>
+        </table>                
+    {%endblock%}
+    
