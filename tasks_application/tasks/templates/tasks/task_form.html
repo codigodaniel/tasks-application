@@ -4,14 +4,15 @@
         <script>
             $(document).ready(function(){
                 project_selector_id='id_project_title';
-                $("#"+project_selector_id).val('{{object.project|escapejs}}');
+                if(!$("#"+project_selector_id).val()){
+                    $("#"+project_selector_id).val('{{object.project|escapejs}}');
+                }
                 {%include '_project_selector_js.html'%}
             });
         </script>
     {%endblock%}
     
-    {%block inbox%}
-    {%endblock%}
+    {%block inbox%}{%endblock%}
     
     {%block content%}
         <h3>Tarea</h3>
