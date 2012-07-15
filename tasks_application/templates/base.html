@@ -27,7 +27,7 @@
                     {%endif%}
                     </p>
                     {%block inbox%}
-						{%include 'tasks/_inbox_form.html'%}
+                        {%include 'tasks/_inbox_form.html'%}
                     {%endblock%}
                     <a href="{%url tasks_archived%}"><h3>Tareas Archivadas({{archived_tasks.count}})</h3></a><br>
                 {%else%}    
