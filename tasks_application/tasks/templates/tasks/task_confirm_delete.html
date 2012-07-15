@@ -4,16 +4,24 @@
 <h3>Tarea</h3>
                     <table >
                         <tr><td> 
-                        <strong>{{object}}</strong><br>
+                        <a title="Editar" href="{%url tasks_task_edit object.id%}">{{ object.title }}</a>
+                        <br>
                         {{object.detail|linebreaks}}
                             <form method="post" action="{%url tasks_task_delete object.id%}">
                             <table>
                                 <tr>
-                                    <td> </td>
                                     <td><input type="submit" value="Borrar definitivamente"> </td>
+                                    <td><i>Al terminar una Tarea, puedes eliminarla definitivamente o archivarla si contiene datos útiles. Las Tareas archivadas aparecen en las búsquedas. </i> </td>
+                                    <td></td>
                                 </tr>
                             </table>
                             </form>
+                            {%if object.is_archived%}
+                                Archivada: <a href="{%url tasks_task_archive object.id%}">Recuperar Tarea de los Archivos</a>
+                            {%else%}
+                                No Archivada: <a href="{%url tasks_task_archive object.id%}">Archivar Tarea</a>
+                            {%endif%}
+                            
                         </td></tr>
                     </table>                
 {%endblock%}

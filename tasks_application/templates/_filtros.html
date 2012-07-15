@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <td>
-                <label for="id_project_filter">Carpeta</label>
+                <label for="id_project_filter">Carpeta:</label>
             </td>
             <td>
                 <input onfocus="this.select();" type="text" id="id_project_filter" value="{%if current_project%}{{current_project}}{%endif%}">
@@ -37,7 +37,7 @@
         </tr>
         <tr>
             <td>
-                <label for="id_highlighted_filter">Sólo destacadas</label>
+                <label for="id_highlighted_filter">Sólo destacadas:</label>
             </td>
             <td>
                 <input onchange="filter_highlighted(this);" type="checkbox" id="id_highlighted_filter" {%if filter_highlighted == "1"%}checked{%endif%} value="1">

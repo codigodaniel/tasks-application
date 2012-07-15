@@ -4,7 +4,9 @@
         <div id="project_all">
             <table>
                 <tr><td>
+                    <h2>Carpetas</h2>
                 <h3>Ingrese una Carpeta Nueva:</h3>
+                <i>También puedes crear una carpeta editando o creando una tarea con una carpeta que no existe. Al enviarla, si no existe, es creada. </i>
                     <form method="post" action="{%url tasks_project_new%}">
                         <table>
                             {{form}}
@@ -16,7 +18,7 @@
                     </form>
                 </td></tr>
                     <tr><td>
-                        <h2>Carpetas</h2>
+                        <p><i>Las tareas archivadas o contenidas en carpetas cerradas, sólo serán accesibles a través de la búsqueda. </i></p>
                             {%if user.project_set.all%}
                                 {%for object in user.project_set.all%}
                                     {%include 'tasks/_project_float.html'%}
