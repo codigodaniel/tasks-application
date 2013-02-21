@@ -1,3 +1,4 @@
+# -*- coding: utf-8 *-*
 # Django settings for tasks_application project.
 
 import os
@@ -140,6 +141,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 #~ print TEMPLATE_CONTEXT_PROCESSORS
-RUTA_BASE=os.path.dirname(os.path.abspath(__file__))
+RUTA_BASE = os.path.dirname(os.path.abspath(__file__))
 
 from local_settings import *
