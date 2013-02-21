@@ -1,19 +1,28 @@
-1) Base Dependencies
+1) Basic setup
+
+1.1) Base Dependencies
 - Python 2.7+
 - pip
 
-2) pip install -r requirements.txt
+1.2) Create and activate a virtualenv:
+    virtualenv --no-site-packages --distribute --python=python2.7 EnvTaskApp
+    source EnvTaskApp/bin/activate
 
-3) create file "local_settings.py" taking as model "local_settings_template.py" 
+2) Install requirements:
+    Inside the "tasks-application" folder of the checkout:
+    pip install -r requirements.txt
+
+3) create file "local_settings.py" taking as model "local_settings_template.py"
+    cp local_settings_template.py local_settings.py
 
 4) create database and superuser
-python manage.py syncdb
+    python manage.py syncdb
 
 5) apply migrations
-python manage.py migrate
+    python manage.py migrate
 
 6) start server
-python manage.py runserver
+    python manage.py runserver
 
 
 
